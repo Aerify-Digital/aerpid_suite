@@ -37,6 +37,9 @@ jobs:
       - name: Check formatting
         run: npx prettier . --check
 
+      - name: Install Linux Build Tools
+        run: sudo apt-get install -y fakeroot dpkg rpm
+
       - name: Build
         run: npm run make
 
