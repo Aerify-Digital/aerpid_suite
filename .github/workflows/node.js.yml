@@ -24,8 +24,21 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm ci
-      - run: npm run lint --if-present
-      - run: npm run test --if-present
-      - run: npx prettier . --check
-      - run: npm run build
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Lint
+        run: npm run lint --if-present
+
+      - name: Test
+        run: npm run test --if-present
+
+      - name: Check formatting
+        run: npx prettier . --check
+
+      - name: Build
+        run: yarn make
+
+      - name: Package
+        run: yarn package
