@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "description": "AerPID Suite is an Electron based desktop application for use with AerPID Devices.",
   "main": ".webpack/main",
+  "repository": "Aerify-Digital/aerpid_suite",
   "scripts": {
     "start": "set NODE_ENV=development && electron-forge start",
     "package": "electron-forge package",
