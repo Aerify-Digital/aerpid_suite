@@ -6,12 +6,14 @@ export const emptyColor: RGBColor = [0, 0, 0];
 
 export default interface SystemState {
   INITIALIZED: boolean;
+  MODEL: number;
   VERSION: string;
   NET_VERSION: string;
   HOSTNAME: string;
   UPTIME: number;
   TEMP: number;
   SET_TEMP: number;
+  AVG_TEMP: number;
   BUMP: {
     enabled: boolean;
     length: number;
@@ -28,6 +30,7 @@ export default interface SystemState {
     mode: LedMode;
     color: RGBColor;
     brightness: number;
+    status: boolean;
   };
   FAV_1: {
     name: string;

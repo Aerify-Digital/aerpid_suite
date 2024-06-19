@@ -9,12 +9,14 @@ import LedMode from './enum/LedMode';
 
 let state: SystemState = {
   INITIALIZED: false,
+  MODEL: 0,
   VERSION: '-',
   NET_VERSION: '-',
   HOSTNAME: '-',
   UPTIME: 0,
   TEMP: 0,
   SET_TEMP: 0,
+  AVG_TEMP: 0,
   BUMP: {
     enabled: false,
     length: 0,
@@ -30,7 +32,8 @@ let state: SystemState = {
     enabled: true,
     mode: LedMode.PULSE,
     color: emptyColor,
-    brightness: 0
+    brightness: 0,
+    status: false
   },
   FAV_1: {
     name: 'Fav 1',
@@ -99,38 +102,44 @@ const parseInitMessage: (data: Readonly<number[]>) => InitData = (
   const bumpTime = getNumber(data.slice(301, 303));
   const autoOffTime = getNumber(data.slice(303, 305));
   const ledMode = data.slice(305, 306)[0];
-  const ledColor: RGBColor = data.slice(306, 309) as RGBColor;
-  const ledBrightness = data.slice(309, 310)[0];
-  const fav1Name = Buffer.from(data.slice(310, 374))
+  const ledStatus = data.slice(306, 307)[0] >= 1; //TODO: move this to the boolean bitmap
+  const ledColor: RGBColor = data.slice(307, 310) as RGBColor;
+  const ledBrightness = data.slice(310, 311)[0];
+  const fav1Name = Buffer.from(data.slice(311, 375))
     .toString('utf8')
     .replace(/\u0000/g, '')
     .trim();
-  const fav1Temp = getNumber(data.slice(374, 376));
-  const fav2Name = Buffer.from(data.slice(376, 440))
+  const fav1Temp = getNumber(data.slice(375, 377));
+  const fav2Name = Buffer.from(data.slice(377, 441))
     .toString('utf8')
     .replace(/\u0000/g, '')
     .trim();
-  const fav2Temp = getNumber(data.slice(440, 442));
-  const fav3Name = Buffer.from(data.slice(442, 506))
+  const fav2Temp = getNumber(data.slice(441, 443));
+  const fav3Name = Buffer.from(data.slice(443, 507))
     .toString('utf8')
     .replace(/\u0000/g, '')
     .trim();
-  const fav3Temp = getNumber(data.slice(506, 508));
-  const fav4Name = Buffer.from(data.slice(508, 572))
+  const fav3Temp = getNumber(data.slice(507, 509));
+  const fav4Name = Buffer.from(data.slice(509, 573))
     .toString('utf8')
     .replace(/\u0000/g, '')
     .trim();
-  const fav4Temp = getNumber(data.slice(572, 574));
-  const tempAdjustAmt = data.slice(574, 575)[0];
-  const temp = getNumber(data.slice(575, 577));
-  const setTemp = getNumber(data.slice(577, 579));
-  const P = bytesToDouble(Uint8Array.from(data.slice(579, 587)));
-  const I = bytesToDouble(Uint8Array.from(data.slice(587, 595)));
-  const D = bytesToDouble(Uint8Array.from(data.slice(595, 603)));
+  const fav4Temp = getNumber(data.slice(573, 575));
+  const tempAdjustAmt = getNumber(data.slice(575, 577));
+  const temp = getNumber(data.slice(577, 579));
+  const setTemp = getNumber(data.slice(579, 581));
+  const avgTemp = getNumber(data.slice(581, 583));
+  const P = bytesToDouble(Uint8Array.from(data.slice(583, 591)));
+  const I = bytesToDouble(Uint8Array.from(data.slice(591, 599)));
+  const D = bytesToDouble(Uint8Array.from(data.slice(599, 607)));
+  const unitType = data.slice(607, 608)[0];
 
   const booleanMap = [...Array(8)].map((_, i) =>
-    Boolean(data.slice(603)[0] & (1 << (7 - i)))
+    Boolean(data.slice(608, 609)[0] & (1 << (7 - i)))
   );
+
+  const deviceModel = data.slice(609)[0]; //TODO: move this to the front of the packed message so it can be used to determine the rest of the message
+
   const [
     AUTO_OFF_ENABLED,
     COIL_ENABLED,
@@ -143,6 +152,7 @@ const parseInitMessage: (data: Readonly<number[]>) => InitData = (
   ] = booleanMap;
 
   return {
+    deviceModel,
     ver: `${ver[0]}.${ver[1]}.${ver[2]}`,
     verNet: `${verNet[0]}.${verNet[1]}.${verNet[2]}`,
     ipAddr: `${ipAddr[0]}.${ipAddr[1]}.${ipAddr[2]}.${ipAddr[3]}`,
@@ -155,6 +165,7 @@ const parseInitMessage: (data: Readonly<number[]>) => InitData = (
     ledMode,
     ledColor,
     ledBrightness,
+    unitType,
     fav1Name,
     fav1Temp,
     fav2Name,
@@ -166,6 +177,7 @@ const parseInitMessage: (data: Readonly<number[]>) => InitData = (
     tempAdjustAmt,
     temp,
     setTemp,
+    avgTemp,
     P,
     I,
     D,
@@ -175,7 +187,8 @@ const parseInitMessage: (data: Readonly<number[]>) => InitData = (
     LIGHTS_ENABLED,
     WIFI_ENABLED,
     SSID_SET,
-    BT_ENABLED
+    BT_ENABLED,
+    ledStatus
   };
 };
 
@@ -191,7 +204,7 @@ const init = async (initData: InitData) => {
   state.LED.enabled = initData.LIGHTS_ENABLED;
   state.LED.color = initData.ledColor;
   state.LED.brightness = initData.ledBrightness;
-
+  state.LED.status = initData.ledStatus;
   state.COIL.enabled = initData.COIL_ENABLED;
   state.COIL.P = initData.P;
 
@@ -206,6 +219,7 @@ const init = async (initData: InitData) => {
   state.FAV_3 = { name: initData.fav3Name, temp: initData.fav3Temp };
 
   state.FAV_4 = { name: initData.fav4Name, temp: initData.fav4Temp };
+  state.MODEL = initData.deviceModel;
 
   state.VERSION = initData.ver;
 
@@ -217,6 +231,8 @@ const init = async (initData: InitData) => {
   state.TEMP = initData.temp;
 
   state.SET_TEMP = initData.setTemp;
+
+  state.AVG_TEMP = initData.avgTemp;
 };
 
 const handleSerial = async (data: Readonly<Buffer>) => {

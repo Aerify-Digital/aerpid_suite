@@ -1,6 +1,7 @@
 import { RGBColor } from './SystemState';
 
 export default interface InitData {
+  deviceModel: number;
   ver: string;
   verNet: string;
   ipAddr: string;
@@ -24,6 +25,7 @@ export default interface InitData {
   tempAdjustAmt: number;
   temp: number;
   setTemp: number;
+  avgTemp: number;
   P: number;
   I: number;
   D: number;
@@ -34,4 +36,5 @@ export default interface InitData {
   WIFI_ENABLED: boolean;
   SSID_SET: boolean;
   BT_ENABLED: boolean;
+  ledStatus: boolean;
 }
