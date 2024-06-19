@@ -14,13 +14,19 @@ import Heater from './views/Heater';
 import Contact from './views/Contact';
 import Lights from './views/Lights';
 import Comms from './views/Comms';
+import { useEffect } from 'react';
+import Update from './views/Update';
+import Graphs from './views/Graphs';
+import Terminal from './views/Terminal';
+import Logs from './views/Logs';
 
 function LocationDisplay() {
   const location = useLocation();
-  console.log(
-    `location.pathname:${location.pathname} location.hash:${location.hash}`
-  );
-  return <></>; // This component doesn't render anything
+
+  useEffect(() => {
+    console.log(`location.pathname:${location.pathname}`);
+  }, [location.pathname]);
+  return <></>;
 }
 
 function App() {
@@ -32,11 +38,15 @@ function App() {
           <Routes>
             <Route path="/" element={<Connect />} />
             <Route path="/home" element={<Home />} />
+            <Route path="/graphs" element={<Graphs />} />
+            <Route path="terminal" element={<Terminal />} />
+            <Route path="/logs" element={<Logs />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/heater" element={<Heater />} />
             <Route path="/lights" element={<Lights />} />
             <Route path="/comms" element={<Comms />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/update" element={<Update />} />
           </Routes>
         </div>
       </ConnectionProvider>

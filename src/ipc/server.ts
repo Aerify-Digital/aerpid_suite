@@ -81,7 +81,6 @@ export const setup = (mainWindow: BrowserWindow) => {
         `Serial connection opened ${stream.settings.path}:${stream.settings.baudRate}`
       )
     );
-    console.log('Sending update-menu event');
     event.sender.send('update-menu', true);
     return true;
   });
@@ -89,15 +88,17 @@ export const setup = (mainWindow: BrowserWindow) => {
   ipcMain.handle(
     'disconnect-serial-port',
     async (event: IpcMainInvokeEvent) => {
-      stream?.close(async (err: Error | null) => {
-        if (err) {
-          console.log('Error: ', err.message);
-        } else {
-          console.log('Sending update-menu event');
-          event.sender.send('update-menu', false);
-          await mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
-        }
-      });
+      if (stream && stream.isOpen) {
+        stream.close(async (err: Error | null) => {
+          if (err) {
+            console.log('Error: ', err.message);
+            stream = undefined;
+          } else {
+            event.sender.send('update-menu', false);
+            await mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
+          }
+        });
+      }
 
       return true;
     }
@@ -139,12 +140,15 @@ export const setup = (mainWindow: BrowserWindow) => {
       port.open(async (err: Error | null) => {
         if (err) {
           console.log('Error: ', err.message);
+          stream = undefined;
           return undefined;
         } else {
           port.set({ dtr: false, rts: false });
-          console.log(
-            `Serial connection opened ${port.settings.path}:${port.settings.baudRate}`
-          );
+          if (process.env.NODE_ENV === 'development') {
+            console.log(
+              `Serial connection opened ${port.settings.path}:${port.settings.baudRate}`
+            );
+          }
           setTimeout(
             async () =>
               await port.port.write(
@@ -166,7 +170,9 @@ export const setup = (mainWindow: BrowserWindow) => {
           console.log(err);
         }
         if (!port.isOpen) {
-          console.log('Serial connection closed');
+          if (process.env.NODE_ENV === 'development') {
+            console.log('Serial connection closed');
+          }
           await mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
           event.sender.send(
             'serial-console',
@@ -187,14 +193,18 @@ export const setup = (mainWindow: BrowserWindow) => {
           data[data.length - 1] === Constants.END_BYTE &&
           data.length <= Constants.MAX_MESSAGE_SIZE
         ) {
-          console.log(
-            `[serial-data] ${data.length} bytes\nraw: ${data.toString(
-              'hex'
-            )}\ndecoded: ${decodeBuffer(data).toString('hex')}`
-          );
+          if (process.env.NODE_ENV === 'development') {
+            console.log(
+              `[serial-data] ${data.length} bytes\nraw: ${data.toString(
+                'hex'
+              )}\ndecoded: ${decodeBuffer(data).toString('hex')}`
+            );
+          }
           event.sender.send('serial-data', decodeBuffer(data));
         } else {
-          console.log(`[serial-console] ${data.toString()}`);
+          if (process.env.NODE_ENV === 'development') {
+            console.log(`[serial-console] ${data.toString()}`);
+          }
           event.sender.send('serial-console', data);
         }
       });

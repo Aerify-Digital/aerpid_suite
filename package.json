@@ -1,8 +1,8 @@
 {
   "name": "aerpid_suite",
-  "productName": "aerpid_suite",
+  "productName": "AerPID Suite",
   "version": "1.0.0",
-  "description": "My Electron application description",
+  "description": "AerPID Suite is an Electron based desktop application for use with AerPID Devices.",
   "main": ".webpack/main",
   "scripts": {
     "start": "set NODE_ENV=development && electron-forge start",
@@ -61,8 +61,9 @@
     "@mui/material": "^5.15.20",
     "@serialport/bindings-cpp": "^12.0.1",
     "@serialport/parser-inter-byte-timeout": "^12.0.0",
+    "axios": "^1.7.2",
     "electron-squirrel-startup": "^1.0.1",
-    "esptool-js": "^0.3.0",
+    "esptool-js": "^0.3.2",
     "fs-extra": "^11.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

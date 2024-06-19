@@ -1,4 +1,7 @@
+import SystemState from './interface/SystemState';
+
 interface ElectronWindow extends Window {
+  pidState: { data: () => SystemState };
   electronAPI: {
     getAppVersion: () => Promise<string>;
     listSerialPorts: () => Promise<PortInfo[]>;

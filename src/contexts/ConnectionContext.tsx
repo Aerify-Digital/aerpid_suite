@@ -6,6 +6,7 @@ import {
   useState
 } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ElectronWindow } from '../global';
 
 export type ContextualConnection = {
   connected: boolean;

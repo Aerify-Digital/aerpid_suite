@@ -233,6 +233,7 @@ const init = async (initData: InitData) => {
   state.SET_TEMP = initData.setTemp;
 
   state.AVG_TEMP = initData.avgTemp;
+  state.INITIALIZED = true;
 };
 
 const handleSerial = async (data: Readonly<Buffer>) => {
@@ -241,6 +242,11 @@ const handleSerial = async (data: Readonly<Buffer>) => {
     case SerialCommand.INIT:
       const initData = parseInitMessage(data.toJSON().data.slice(1));
       await init(initData);
+      ipcRenderer.send(
+        'check-firmware-update',
+        initData.deviceModel,
+        initData.ver
+      );
       break;
     case SerialCommand.AUTO_OFF_LENGTH:
       break;
@@ -315,9 +321,10 @@ ipcRenderer.on(
 );
 
 ipcRenderer.on('update-menu', (event, isConnected) => {
-  console.log('Received update-menu event with:', isConnected);
   event.sender.send('request-update-menu', isConnected);
 });
+
+contextBridge.exposeInMainWorld('pidState', { data: () => state });
 
 contextBridge.exposeInMainWorld('electronAPI', {
   getAppVersion: async () => {

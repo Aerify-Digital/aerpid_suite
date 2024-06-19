@@ -16,5 +16,13 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals((metric) => {
-  if (process.env.NODE_ENV === 'development') console.log(metric);
+  if (process.env.NODE_ENV === 'development') {
+    console.log(
+      `Name: ${metric.name}`,
+      `Value: ${metric.value}`,
+      `Delta: ${metric.delta}`,
+      `ID: ${metric.id}`,
+      `Entries: ${JSON.stringify(metric.entries, null, 2)}`
+    );
+  }
 });
