@@ -310,8 +310,6 @@ const createWindow = (): void => {
     }
   );
 
-  ipcMain.on('check-app-update', (event) => {});
-
   const template: MenuItemConstructorOptions[] = createMenu(false);
 
   Menu.setApplicationMenu(Menu.buildFromTemplate(template));

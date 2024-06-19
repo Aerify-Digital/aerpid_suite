@@ -7,7 +7,7 @@ import Led from './enum/Led';
 import SystemState, { RGBColor, emptyColor } from './interface/SystemState';
 import LedMode from './enum/LedMode';
 
-let state: SystemState = {
+const state: SystemState = {
   INITIALIZED: false,
   MODEL: 0,
   VERSION: '-',
@@ -91,11 +91,11 @@ const parseInitMessage: (data: Readonly<number[]>) => InitData = (
   const ipAddr = data.slice(6, 10);
   const ssid = Buffer.from(data.slice(10, 42))
     .toString('utf8')
-    .replace(/\u0000/g, '')
+    .replace(/\u0000/g, '') // eslint-disable-line no-control-regex
     .trim();
   const hostname = Buffer.from(data.slice(42, 295))
     .toString('utf8')
-    .replace(/\u0000/g, '')
+    .replace(/\u0000/g, '') // eslint-disable-line no-control-regex
     .trim();
   const uptime = getNumber(data.slice(295, 299));
   const bumpTemp = getNumber(data.slice(299, 301));
@@ -107,22 +107,22 @@ const parseInitMessage: (data: Readonly<number[]>) => InitData = (
   const ledBrightness = data.slice(310, 311)[0];
   const fav1Name = Buffer.from(data.slice(311, 375))
     .toString('utf8')
-    .replace(/\u0000/g, '')
+    .replace(/\u0000/g, '') // eslint-disable-line no-control-regex
     .trim();
   const fav1Temp = getNumber(data.slice(375, 377));
   const fav2Name = Buffer.from(data.slice(377, 441))
     .toString('utf8')
-    .replace(/\u0000/g, '')
+    .replace(/\u0000/g, '') // eslint-disable-line no-control-regex
     .trim();
   const fav2Temp = getNumber(data.slice(441, 443));
   const fav3Name = Buffer.from(data.slice(443, 507))
     .toString('utf8')
-    .replace(/\u0000/g, '')
+    .replace(/\u0000/g, '') // eslint-disable-line no-control-regex
     .trim();
   const fav3Temp = getNumber(data.slice(507, 509));
   const fav4Name = Buffer.from(data.slice(509, 573))
     .toString('utf8')
-    .replace(/\u0000/g, '')
+    .replace(/\u0000/g, '') // eslint-disable-line no-control-regex
     .trim();
   const fav4Temp = getNumber(data.slice(573, 575));
   const tempAdjustAmt = getNumber(data.slice(575, 577));
@@ -240,13 +240,15 @@ const handleSerial = async (data: Readonly<Buffer>) => {
   console.log(`[serial-data] ${data.toString('hex')}`);
   switch (data[0]) {
     case SerialCommand.INIT:
-      const initData = parseInitMessage(data.toJSON().data.slice(1));
-      await init(initData);
-      ipcRenderer.send(
-        'check-firmware-update',
-        initData.deviceModel,
-        initData.ver
-      );
+      {
+        const initData = parseInitMessage(data.toJSON().data.slice(1));
+        await init(initData);
+        ipcRenderer.send(
+          'check-firmware-update',
+          initData.deviceModel,
+          initData.ver
+        );
+      }
       break;
     case SerialCommand.AUTO_OFF_LENGTH:
       break;

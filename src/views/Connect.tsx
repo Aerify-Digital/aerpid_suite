@@ -3,7 +3,6 @@ import ConnectForm from '../components/ConnectForm';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useConnectionContext } from '../contexts/ConnectionContext';
-import { ElectronWindow } from '../global';
 
 export default function Connect() {
   const [version, setVersion] = useState<string>('');

@@ -1,3 +1,4 @@
+import { PortInfo } from '@serialport/bindings-cpp';
 import SystemState from './interface/SystemState';
 
 interface ElectronWindow extends Window {

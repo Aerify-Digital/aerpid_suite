@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import DeviceModel from '../enum/DeviceModel';
-import { ElectronWindow } from '../global';
 
 export default function Update() {
   const [modelName, setModelName] = useState('' as string | undefined);
@@ -20,5 +19,10 @@ export default function Update() {
       }
     }
   }, []);
-  return <div>Update Firmware {!!modelName ? `for ${modelName}` : ''}</div>;
+  return (
+    <div>
+      Update Firmware
+      {modelName && modelName.length > 0 ? ` for ${modelName}` : ''}
+    </div>
+  );
 }
