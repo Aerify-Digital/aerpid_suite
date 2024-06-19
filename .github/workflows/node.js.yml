@@ -41,7 +41,7 @@ jobs:
         run: npm run test --if-present
 
       - name: Check formatting
-        run: npx prettier . --check
+        run: yarn check-format
 
       - name: Build
         run: yarn make
