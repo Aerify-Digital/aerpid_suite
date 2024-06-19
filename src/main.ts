@@ -230,7 +230,7 @@ const createWindow = (): void => {
             parseInt(versionInfo.version.VER_BUILD)
           ];
           for (let i = 0; i < currentVersion.length; i++) {
-            if (fetchedVersion[i] > currentVersion[i] - 1) {
+            if (fetchedVersion[i] > currentVersion[i]) {
               isNewer = true;
               break;
             } else if (fetchedVersion[i] < currentVersion[i]) {
