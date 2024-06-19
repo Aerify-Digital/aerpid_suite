@@ -246,17 +246,6 @@ const handleSerial = async (data: Readonly<Buffer>) => {
       console.log(`Toggled coil ${data[1] ? 'on' : 'off'}`);
       state.COIL.enabled = data[1] > 0 ? true : false;
 
-      if (document.getElementById('toggle_heat')) {
-        const element = document.getElementById('toggle_heat');
-        if (data[1] > 0) {
-          element.style.setProperty('background-color', '#faa843', 'important');
-          element.style.setProperty('color', 'whitesmoke', 'important');
-        } else {
-          element.style.removeProperty('background-color');
-          element.style.removeProperty('color');
-        }
-      }
-
       break;
     case SerialCommand.ESP:
       break;
