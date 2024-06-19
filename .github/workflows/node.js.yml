@@ -25,6 +25,14 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      
+      - name: Install build tools
+        run: |
+          if [[ "$RUNNER_OS" == "macOS" ]]; then
+            xcode-select --install
+          elif [[ "$RUNNER_OS" == "Windows" ]]; then
+            npm install --global --production windows-build-tools
+          fi
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
