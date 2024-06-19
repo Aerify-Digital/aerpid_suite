@@ -277,7 +277,7 @@ const createWindow = (): void => {
                         isUpdateAvailable = true;
                         dialog.showMessageBox({
                           type: 'info',
-                          message: `Firmware download complete.\nInitiatiate a firmware update from the menu to install v${versionString}`,
+                          message: `Firmware download complete.\nInitiate a firmware update from the menu to install v${versionString}`,
                           buttons: ['OK'],
                           defaultId: 0,
                           cancelId: 0
