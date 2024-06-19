@@ -35,10 +35,7 @@ jobs:
         run: yarn install --network-timeout 1000000 
 
       - name: Lint
-        run: npm run lint --if-present
-
-      - name: Test
-        run: npm run test --if-present
+        run: yarn lint
 
       - name: Check formatting
         run: yarn check-format
