@@ -16,7 +16,6 @@ import { spawn } from 'child_process';
 
 const config: ForgeConfig = {
   packagerConfig: {
-    name: 'AerPID Suite',
     executableName: 'AerPID Suite',
     asar: {
       unpack: './node_modules/serialport/**/*'
@@ -28,7 +27,12 @@ const config: ForgeConfig = {
     new MakerSquirrel({}),
     new MakerZIP({}, ['darwin']),
     new MakerRpm({}),
-    new MakerDeb({})
+    new MakerDeb({
+      options: {
+        productName: 'AerPID Suite',
+        bin: 'aerpid_suite'
+      }
+    })
   ],
   hooks: {
     readPackageJson: async (forgeConfig, packageJson) => {
