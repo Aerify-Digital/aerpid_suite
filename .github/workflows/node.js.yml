@@ -25,14 +25,22 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+
       
       - name: Install build tools
         run: |
           if [[ "$RUNNER_OS" == "macOS" ]]; then
-            xcode-select --install
+            if ! xcode-select --print-path &>/dev/null; then
+              xcode-select --install
+            fi
           elif [[ "$RUNNER_OS" == "Windows" ]]; then
             npm install --global --production windows-build-tools
           fi
+      
+      - name: Set up Python 2.7
+        uses: actions/setup-python@v5
+        with:
+          python-version: '2.7' 
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
