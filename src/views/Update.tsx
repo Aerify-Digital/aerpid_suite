@@ -4,7 +4,7 @@ import DeviceModel from '../enum/DeviceModel';
 export default function Update() {
   const [modelName, setModelName] = useState('' as string | undefined);
   useEffect(() => {
-    const state = (window as unknown as ElectronWindow).pidState.data();
+    const state = (window as any).pidState.data();
     if (state.MODEL !== undefined) {
       switch (state.MODEL) {
         case DeviceModel.AerPIDv3:

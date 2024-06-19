@@ -14,7 +14,7 @@ export default function Connect() {
       console.log(connection.connected ? 'Connected' : 'Not connected');
     }
     if (connection.connected) navigate('/home');
-    const api = (window as unknown as ElectronWindow).electronAPI;
+    const api = (window as any).electronAPI;
     api
       .getAppVersion()
       .then((version: string) => {

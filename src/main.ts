@@ -322,8 +322,9 @@ const createWindow = (): void => {
   setup(mainWindow);
 
   // Open the DevTools.
-  if (process.env.NODE_ENV === 'development')
+  if (process.env.NODE_ENV === 'development') {
     mainWindow.webContents.openDevTools();
+  }
 };
 
 // This method will be called when Electron has finished

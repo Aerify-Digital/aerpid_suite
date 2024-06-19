@@ -34,14 +34,13 @@ export function ConnectionProvider({ children }: { children: ReactNode }) {
   const navigate = useNavigate();
 
   const updatePorts = async () => {
-    const p = await (
-      window as unknown as ElectronWindow
-    ).electronAPI.listSerialPorts();
+    const api = (window as any).electronAPI;
+    const p = await api.listSerialPorts();
     setPorts(p.map((port: { path: string }) => port.path));
   };
 
   const connect = async () => {
-    const api = (window as unknown as ElectronWindow).electronAPI;
+    const api = (window as any).electronAPI;
     setConnecting(true);
     if (port != 'none') {
       await api.setSerialPort(port, baudRate);
@@ -60,7 +59,7 @@ export function ConnectionProvider({ children }: { children: ReactNode }) {
   };
 
   const disconnect = async () => {
-    const api = (window as unknown as ElectronWindow).electronAPI;
+    const api = (window as any).electronAPI;
     const disconnected = await api.disconnect();
     if (disconnected) {
       setConnected(false);

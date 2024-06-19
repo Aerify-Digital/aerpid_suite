@@ -16,8 +16,9 @@ const encodeBuffer = (data: Buffer) => {
   const arr = [Constants.START_BYTE];
   let dlength = 0;
   for (const byte of data) {
-    if (dlength > Constants.MAX_MESSAGE_SIZE)
+    if (dlength > Constants.MAX_MESSAGE_SIZE) {
       throw new Error('Message exceeds MAX_MESSAGE_SIZE');
+    }
 
     switch (byte) {
       case Constants.START_BYTE:
@@ -44,8 +45,9 @@ const encodeBuffer = (data: Buffer) => {
  */
 const decodeBuffer = (data: Buffer) => {
   if (data[0] !== Constants.START_BYTE) throw new Error('Invalid data');
-  if (data[data.length - 1] !== Constants.END_BYTE)
+  if (data[data.length - 1] !== Constants.END_BYTE) {
     throw new Error('Invalid data');
+  }
 
   const arr = [];
   let endOfMessage = false;
