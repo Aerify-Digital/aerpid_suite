@@ -29,11 +29,7 @@ jobs:
       
       - name: Install build tools
         run: |
-          if [[ "$RUNNER_OS" == "macOS" ]]; then
-            if ! xcode-select --print-path &>/dev/null; then
-              xcode-select --install
-            fi
-          elif [[ "$RUNNER_OS" == "Windows" ]]; then
+          if [[ "$RUNNER_OS" == "Windows" ]]; then
             npm install --global --production windows-build-tools
           fi
       
