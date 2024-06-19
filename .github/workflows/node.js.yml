@@ -32,13 +32,14 @@ jobs:
           python-version: '3.10' 
 
       - name: Install dependencies
-        run: yarn install --network-timeout 1000000 
+        run: yarn install --network-timeout 1000000 --frozen-lockfile
 
       - name: Lint
         run: yarn lint
 
       - name: Check formatting
         run: yarn check-format
+        if: runner.os != 'Windows'
 
       - name: Build
         run: yarn make
