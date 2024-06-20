@@ -302,7 +302,15 @@ const createWindow = (): void => {
                         });
                         createMenu(true);
                       })
-                      .catch(console.error);
+                      .catch((e) => {
+                        dialog.showMessageBox({
+                          type: 'error',
+                          message: `Error: Firmware failed to download.\n${(e as any).message ? (e as any).message : 'An unknown error occurred'}`,
+                          buttons: ['OK'],
+                          defaultId: 0,
+                          cancelId: 0
+                        });
+                      });
                   }
                 });
             } else {
