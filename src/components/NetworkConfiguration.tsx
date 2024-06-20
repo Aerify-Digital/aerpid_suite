@@ -5,31 +5,15 @@ export default function NetworkConfiguration() {
     <Grid container direction="column" item>
       <Grid item alignContent="center" container>
         <Grid item sx={{ mt: 3 }}>
-          <Paper
-            style={{
-              backgroundColor: '#44475a'
-            }}
-          >
-            <Typography
-              variant="h6"
-              align="center"
-              style={{ color: '#f8f8f2' }}
-            >
+          <Paper>
+            <Typography variant="h6" align="center">
               Wifi Networks
             </Typography>
           </Paper>
         </Grid>
         <Grid item sx={{ mt: 3 }}>
-          <Paper
-            style={{
-              backgroundColor: '#44475a'
-            }}
-          >
-            <Typography
-              variant="h6"
-              align="center"
-              style={{ color: '#f8f8f2' }}
-            >
+          <Paper>
+            <Typography variant="h6" align="center">
               Wifi Services
             </Typography>
           </Paper>

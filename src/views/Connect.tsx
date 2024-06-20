@@ -27,23 +27,15 @@ export default function Connect() {
   return (
     <Grid container direction="column" justifyContent="center" spacing={1}>
       <Grid item sx={{ mt: 2, mb: 1 }}>
-        <Typography variant="h5" align="center" style={{ color: '#f8f8f2' }}>
+        <Typography variant="h5" align="center">
           AerPID Suite
         </Typography>
-        <Typography
-          variant="subtitle2"
-          align="center"
-          style={{ color: '#f8f8f2' }}
-        >
+        <Typography variant="subtitle2" align="center">
           {version}
         </Typography>
       </Grid>
       <Grid item sx={{ mt: 0, mb: 1 }}>
-        <Typography
-          variant="subtitle1"
-          align="center"
-          style={{ color: '#f8f8f2' }}
-        >
+        <Typography variant="subtitle1" align="center">
           by Aerify Digital
         </Typography>
       </Grid>

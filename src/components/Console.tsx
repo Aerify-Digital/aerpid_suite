@@ -5,8 +5,6 @@ import { useEffect, useRef, useState } from 'react';
 const StyledPaper = styled(Paper)({
   fontFamily: 'monospace',
   whiteSpace: 'pre',
-  backgroundColor: '#44475a',
-  color: '#f8f8f2',
   margin: 'auto',
   paddingLeft: '5px',
   marginTop: '10px',
@@ -51,7 +49,7 @@ export default function Console({ output }: { output: string }) {
           checked={autoScroll}
           onChange={() => setAutoScroll(!autoScroll)}
         />
-        <label style={{ color: '#f8f8f2' }}>Auto Scroll</label>
+        <label>Auto Scroll</label>
       </div>
       <StyledPaper ref={terminalRef}>
         <div style={{ marginBottom: '3px', marginTop: '3px' }}>{output}</div>

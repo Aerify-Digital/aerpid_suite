@@ -17,7 +17,7 @@ export default function Comms() {
     <Grid container direction="column" item>
       <Grid item alignContent="center">
         <Grid item sx={{ mt: 3, ml: 2 }}>
-          <Typography variant="h5" align="left" style={{ color: '#f8f8f2' }}>
+          <Typography variant="h5" align="left">
             Network Configuration
           </Typography>
           <NetworkConfiguration />
@@ -25,7 +25,7 @@ export default function Comms() {
       </Grid>
       <Grid item alignContent="center">
         <Grid item sx={{ mt: 3, ml: 2 }}>
-          <Typography variant="h5" align="left" style={{ color: '#f8f8f2' }}>
+          <Typography variant="h5" align="left">
             Comms Configuration
           </Typography>
           <CommsConfiguration />

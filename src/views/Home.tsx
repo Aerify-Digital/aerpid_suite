@@ -33,7 +33,7 @@ export default function Home() {
     <Grid container direction="column" item>
       <Grid item alignContent="center">
         <Grid item sx={{ mt: 3, ml: 2 }}>
-          <Typography variant="h5" align="left" style={{ color: '#f8f8f2' }}>
+          <Typography variant="h5" align="left">
             {hostName &&
             modelName &&
             hostName.length > 0 &&

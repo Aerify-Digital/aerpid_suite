@@ -34,13 +34,10 @@ export default function ConnectForm() {
             paddingBottom: '4vmin',
             paddingTop: '4vmin',
             paddingLeft: '4vmin',
-            paddingRight: '4vmin',
-            backgroundColor: '#44475a'
+            paddingRight: '4vmin'
           }}
         >
-          <Typography variant="h6" style={{ color: '#f8f8f2' }}>
-            AerPID USB Sync
-          </Typography>
+          <Typography variant="h6">AerPID USB Sync</Typography>
           <Grid
             container
             spacing={3}
@@ -50,11 +47,12 @@ export default function ConnectForm() {
           >
             <Grid container item alignItems="center">
               <Grid item>
-                <label style={{ color: '#f8f8f2' }}>Serial Port:</label>
+                <label>Serial Port:</label>
               </Grid>
               <Grid item>
                 <IconButton
-                  style={{ color: '#8be9fd' }}
+                  color="primary"
+                  size="medium"
                   onClick={() => connection.updatePorts()}
                 >
                   <AutorenewOutlinedIcon />
@@ -63,27 +61,17 @@ export default function ConnectForm() {
             </Grid>
             <Grid item xs={12} style={{ width: '100%' }}>
               <Select
-                style={{ color: '#f8f8f2', backgroundColor: '#44475a' }}
                 fullWidth
                 defaultValue="none"
                 value={connection.port}
                 onChange={(e) => connection.setPort(e.target.value)}
                 dir="down"
               >
-                <MenuItem
-                  key={`port_none`}
-                  value="none"
-                  disabled
-                  style={{ color: '#f8f8f2', backgroundColor: '#44475a' }}
-                >
+                <MenuItem key={`port_none`} value="none" disabled>
                   Select a port
                 </MenuItem>
                 {connection.ports.map((port) => (
-                  <MenuItem
-                    key={`port_${port}`}
-                    value={port}
-                    style={{ color: '#f8f8f2', backgroundColor: '#44475a' }}
-                  >
+                  <MenuItem key={`port_${port}`} value={port}>
                     {port}
                   </MenuItem>
                 ))}
@@ -91,13 +79,12 @@ export default function ConnectForm() {
             </Grid>
             <Grid container item>
               <Grid item>
-                <label style={{ color: '#f8f8f2' }}>Baud Rate:</label>
+                <label>Baud Rate:</label>
               </Grid>
               <Grid item></Grid>
             </Grid>
             <Grid item xs={12} style={{ width: '100%' }}>
               <Select
-                style={{ color: '#f8f8f2', backgroundColor: '#44475a' }}
                 fullWidth
                 defaultValue={
                   connection.baudRate ? connection.baudRate : 115200
@@ -112,11 +99,7 @@ export default function ConnectForm() {
                 dir="down"
               >
                 {baudRates.map((rate) => (
-                  <MenuItem
-                    key={`baud_${rate}`}
-                    value={rate}
-                    style={{ color: '#f8f8f2', backgroundColor: '#44475a' }}
-                  >
+                  <MenuItem key={`baud_${rate}`} value={rate}>
                     {rate} {rate === 115200 && '(default)'}
                   </MenuItem>
                 ))}
@@ -124,13 +107,7 @@ export default function ConnectForm() {
             </Grid>
             <Grid item>
               <Button
-                style={{
-                  color: '#f8f8f2',
-                  backgroundColor:
-                    connection.port == 'none' || connection.connecting
-                      ? '#44475a'
-                      : '#6272a4'
-                }}
+                color="primary"
                 variant="contained"
                 onClick={() => {
                   connection.connect();

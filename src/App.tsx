@@ -19,6 +19,9 @@ import Logs from './views/Logs';
 import Settings from './views/Settings';
 import Update from './views/Update';
 import SerialConsole from './views/SerialConsole';
+import theme from './theme';
+import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider } from '@mui/material/styles';
 
 function Debug() {
   const location = useLocation();
@@ -30,26 +33,29 @@ function Debug() {
 
 function App() {
   return (
-    <Router>
-      <ConnectionProvider>
-        {process.env.NODE_ENV == 'development' ? <Debug /> : <></>}
-        <div className="App">
-          <Routes>
-            <Route path="/" element={<Connect />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/graphs" element={<Graphs />} />
-            <Route path="terminal" element={<SerialConsole />} />
-            <Route path="/logs" element={<Logs />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/heater" element={<Heater />} />
-            <Route path="/lights" element={<Lights />} />
-            <Route path="/comms" element={<Comms />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/update" element={<Update />} />
-          </Routes>
-        </div>
-      </ConnectionProvider>
-    </Router>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Router>
+        <ConnectionProvider>
+          {process.env.NODE_ENV == 'development' ? <Debug /> : <></>}
+          <div className="App">
+            <Routes>
+              <Route path="/" element={<Connect />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/graphs" element={<Graphs />} />
+              <Route path="terminal" element={<SerialConsole />} />
+              <Route path="/logs" element={<Logs />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/heater" element={<Heater />} />
+              <Route path="/lights" element={<Lights />} />
+              <Route path="/comms" element={<Comms />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/update" element={<Update />} />
+            </Routes>
+          </div>
+        </ConnectionProvider>
+      </Router>
+    </ThemeProvider>
   );
 }
 

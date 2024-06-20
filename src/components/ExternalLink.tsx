@@ -14,7 +14,7 @@ export default function ExternalLink({ url, children }: ExternalLinkProps) {
   };
 
   return (
-    <Link href={url} onClick={handleClick} color="#8be9fd">
+    <Link href={url} onClick={handleClick}>
       {children}
     </Link>
   );

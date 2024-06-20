@@ -1,21 +1,12 @@
-import { CheckBox } from '@mui/icons-material';
-import { Grid, Paper, Switch, ToggleButton, Typography } from '@mui/material';
+import { Grid, Paper, Switch, Typography } from '@mui/material';
 
 export default function CommsConfiguration() {
   return (
     <Grid container direction="column" item>
       <Grid item alignContent="center" container>
         <Grid item xs={6} sx={{ mt: 3 }}>
-          <Paper
-            style={{
-              backgroundColor: '#44475a'
-            }}
-          >
-            <Typography
-              variant="h6"
-              align="center"
-              style={{ color: '#f8f8f2' }}
-            >
+          <Paper>
+            <Typography variant="h6" align="center">
               USB Communication
             </Typography>
             <Grid container direction="row" justifyContent="center" spacing={1}>
@@ -27,11 +18,7 @@ export default function CommsConfiguration() {
               >
                 <Grid item container justifyContent="center">
                   <Grid item>
-                    <Typography
-                      variant="subtitle1"
-                      align="center"
-                      style={{ color: '#f8f8f2' }}
-                    >
+                    <Typography variant="subtitle1" align="center">
                       Enabled
                     </Typography>
                   </Grid>
@@ -44,11 +31,7 @@ export default function CommsConfiguration() {
                   </Grid>
                 </Grid>
                 <Grid item>
-                  <Typography
-                    variant="subtitle1"
-                    align="center"
-                    style={{ color: '#f8f8f2' }}
-                  >
+                  <Typography variant="subtitle1" align="center">
                     The AerPID Control Suite allows you to control and debug
                     your AerPID Device from your PC when connected over the USB
                     serial connection.
