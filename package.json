@@ -12,7 +12,8 @@
     "publish": "electron-forge publish",
     "lint": "eslint --ext .ts,.tsx .",
     "check-format": "prettier . --check",
-    "format": "prettier . --write"
+    "format": "prettier . --write",
+    "clean": "rimraf .webpack out"
   },
   "devDependencies": {
     "@electron-forge/cli": "^7.4.0",
@@ -42,6 +43,7 @@
     "postcss": "^8.4.38",
     "postcss-loader": "^8.1.1",
     "prettier": "^3.3.2",
+    "rimraf": "^5.0.7",
     "style-loader": "^3.3.4",
     "tailwindcss": "^3.4.4",
     "ts-loader": "^9.2.2",

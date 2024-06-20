@@ -113,14 +113,14 @@ export default function Contact() {
             </Grid>
             <Grid item>
               <Typography variant="subtitle1" align="center">
-                If you encounter a bug, have an issue or suggestion, please open
-                a{' '}
+                If you encounter a bug/issue or have any suggestions, please
+                open a{' '}
                 {
                   <ExternalLink url="https://github.com/Aerify-Digital/aerpid_suite/issues/new/choose">
                     issue
                   </ExternalLink>
                 }{' '}
-                on our github source code repository.
+                on github .
               </Typography>
             </Grid>
             <Grid item>
