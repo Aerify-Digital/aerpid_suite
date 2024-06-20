@@ -77,12 +77,6 @@ declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 
 export const setup = (mainWindow: BrowserWindow) => {
   ipcMain.handle('connect-serial-port', async (event: IpcMainInvokeEvent) => {
-    event.sender.send(
-      'serial-console',
-      Buffer.from(
-        `Serial connection opened ${stream.settings.path}:${stream.settings.baudRate}`
-      )
-    );
     event.sender.send('update-menu', true);
     return true;
   });
@@ -151,20 +145,23 @@ export const setup = (mainWindow: BrowserWindow) => {
               `Serial connection opened ${port.settings.path}:${port.settings.baudRate}`
             );
           }
-          setTimeout(
-            async () =>
-              await port.port.write(
-                encodeBuffer(Buffer.from([SerialCommand.INIT, Operation.GET]))
-              ),
-            2000
-          );
-
           event.sender.send(
             'serial-console',
             Buffer.from(
               `Serial connection opened ${port.settings.path}:${port.settings.baudRate}`
             )
           );
+          setTimeout(async () => {
+            event.sender.send(
+              'serial-console',
+              Buffer.from(
+                `Sending INIT command on ${port.settings.path}:${port.settings.baudRate}`
+              )
+            );
+            await port.port.write(
+              encodeBuffer(Buffer.from([SerialCommand.INIT, Operation.GET]))
+            );
+          }, 5000);
         }
       });
       port.on('close', async (err: any) => {

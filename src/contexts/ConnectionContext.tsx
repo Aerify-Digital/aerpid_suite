@@ -1,6 +1,7 @@
 import {
   ReactNode,
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useState
@@ -8,6 +9,8 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 export type ContextualConnection = {
+  serialConsole: string[];
+  initialized: boolean;
   connected: boolean;
   connecting: boolean;
   connect: () => void;
@@ -25,11 +28,32 @@ export const ConnectionContext = createContext<
 >(undefined);
 
 export function ConnectionProvider({ children }: { children: ReactNode }) {
+  const [initialized, setInitialized] = useState(false);
   const [connected, setConnected] = useState(false);
   const [connecting, setConnecting] = useState(false);
   const [port, setPort] = useState('none');
   const [ports, setPorts] = useState([] as string[]);
   const [baudRate, setBaudRate] = useState(115200);
+  const MAX_LINES = 10000;
+  const [serialConsole, setSerialConsole] = useState<string[]>([]);
+  const serialCallback = useCallback((data: Buffer) => {
+    const text = String.fromCharCode(...data);
+    setSerialConsole((lines) => {
+      const newLines = [...lines, ...text.split(/\r?\n/)];
+      if (newLines.length > MAX_LINES) {
+        newLines.splice(0, newLines.length - MAX_LINES);
+      }
+      return newLines;
+    });
+  }, []);
+
+  useEffect(() => {
+    const api = (window as any).electronAPI;
+    api.subscribeToSerial(serialCallback);
+    return () => {
+      api.unsubscribeFromSerial(serialCallback);
+    };
+  }, []);
 
   const navigate = useNavigate();
 
@@ -48,10 +72,12 @@ export function ConnectionProvider({ children }: { children: ReactNode }) {
       if (!connected) {
         console.error('Failed to connect');
         setConnecting(false);
+        setInitialized(false);
         navigate('/');
         return;
       }
       setConnected(true);
+      setInitialized(true);
     } else {
       console.error('Port not selected');
     }
@@ -64,8 +90,10 @@ export function ConnectionProvider({ children }: { children: ReactNode }) {
     if (disconnected) {
       setConnected(false);
       setConnecting(false);
+      setInitialized(false);
       setPort('none');
       setBaudRate(115200);
+      setSerialConsole([]);
       navigate('/');
     } else {
       console.error('Failed to disconnect');
@@ -87,6 +115,8 @@ export function ConnectionProvider({ children }: { children: ReactNode }) {
   return (
     <ConnectionContext.Provider
       value={{
+        serialConsole,
+        initialized,
         connected,
         connecting,
         connect,

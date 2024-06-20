@@ -5,18 +5,20 @@ import { useEffect, useRef, useState } from 'react';
 const StyledPaper = styled(Paper)({
   fontFamily: 'monospace',
   whiteSpace: 'pre',
-  backgroundColor: '#282a36',
+  backgroundColor: '#44475a',
   color: '#f8f8f2',
-  margin: '12px',
+  margin: 'auto',
+  paddingLeft: '5px',
+  marginTop: '10px',
   overflow: 'auto',
-  height: 'calc(100vh - 50px)',
-  width: 'calc(100vw - 26px)',
+  height: 'calc(80vh)',
+  width: 'calc(98vw)',
   '&::-webkit-scrollbar': {
     width: '7px',
     height: '7px'
   },
   '&::-webkit-scrollbar-track': {
-    background: '#f1f1f1'
+    background: 'transparent' // Change this to the color of the container if you don't want it to be transparent
   },
   '&::-webkit-scrollbar-thumb': {
     background: '#888',
@@ -27,7 +29,7 @@ const StyledPaper = styled(Paper)({
   }
 });
 
-export default function Terminal({ output }: { output: string }) {
+export default function Console({ output }: { output: string }) {
   const [autoScroll, setAutoScroll] = useState(true);
   const terminalRef = useRef(null!);
 
@@ -49,10 +51,10 @@ export default function Terminal({ output }: { output: string }) {
           checked={autoScroll}
           onChange={() => setAutoScroll(!autoScroll)}
         />
-        <label>Auto Scroll</label>
+        <label style={{ color: '#f8f8f2' }}>Auto Scroll</label>
       </div>
       <StyledPaper ref={terminalRef}>
-        <div>{output}</div>
+        <div style={{ marginBottom: '3px', marginTop: '3px' }}>{output}</div>
       </StyledPaper>
     </>
   );

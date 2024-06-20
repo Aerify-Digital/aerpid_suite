@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import DeviceModel from '../enum/DeviceModel';
+import { Grid, Typography } from '@mui/material';
 
 export default function Update() {
   const [modelName, setModelName] = useState('' as string | undefined);
@@ -20,9 +21,15 @@ export default function Update() {
     }
   }, []);
   return (
-    <div>
-      Update Firmware
-      {modelName && modelName.length > 0 ? ` for ${modelName}` : ''}
-    </div>
+    <Grid container direction="column" item>
+      <Grid item alignContent="center">
+        <Grid item sx={{ mt: 3, ml: 2 }}>
+          <Typography variant="h5" align="left" style={{ color: '#f8f8f2' }}>
+            Update Firmware
+            {modelName && modelName.length > 0 ? ` for ${modelName}` : ''}
+          </Typography>
+        </Grid>
+      </Grid>
+    </Grid>
   );
 }

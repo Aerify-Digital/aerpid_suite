@@ -18,7 +18,7 @@ import Lights from './views/Lights';
 import Logs from './views/Logs';
 import Settings from './views/Settings';
 import Update from './views/Update';
-import SerialTerminal from './views/SerialTerminal';
+import SerialConsole from './views/SerialConsole';
 
 function Debug() {
   const location = useLocation();
@@ -38,7 +38,7 @@ function App() {
             <Route path="/" element={<Connect />} />
             <Route path="/home" element={<Home />} />
             <Route path="/graphs" element={<Graphs />} />
-            <Route path="terminal" element={<SerialTerminal />} />
+            <Route path="terminal" element={<SerialConsole />} />
             <Route path="/logs" element={<Logs />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/heater" element={<Heater />} />

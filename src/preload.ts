@@ -244,6 +244,10 @@ const handleSerial = async (data: Readonly<Buffer>) => {
         const initData = parseInitMessage(data.toJSON().data.slice(1));
         await init(initData);
         ipcRenderer.send(
+          'serial-console',
+          Buffer.from('Received INIT command')
+        );
+        ipcRenderer.send(
           'check-firmware-update',
           initData.deviceModel,
           initData.ver
@@ -251,57 +255,109 @@ const handleSerial = async (data: Readonly<Buffer>) => {
       }
       break;
     case SerialCommand.AUTO_OFF_LENGTH:
+      ipcRenderer.send(
+        'serial-console',
+        Buffer.from('Received AUTO_OFF_LENGTH command')
+      );
       break;
     case SerialCommand.AUTO_OFF_TOGGLE:
-      console.log(`Toggled auto-off ${data[1] ? 'on' : 'off'}`);
+      ipcRenderer.send(
+        'serial-console',
+        Buffer.from(`Toggled auto-off ${data[1] ? 'on' : 'off'}`)
+      );
       break;
     case SerialCommand.ADJUST_AMOUNT:
+      ipcRenderer.send(
+        'serial-console',
+        Buffer.from('Received ADJUST_AMOUNT command')
+      );
       break;
     case SerialCommand.BLE:
+      ipcRenderer.send('serial-console', Buffer.from('Received BLE command'));
       break;
     case SerialCommand.BUMP_AMOUNT:
+      ipcRenderer.send(
+        'serial-console',
+        Buffer.from('Received BUMP_AMOUNT command')
+      );
       break;
     case SerialCommand.BUMP_LENGTH:
+      ipcRenderer.send(
+        'serial-console',
+        Buffer.from('Received BUMP_LENGTH command')
+      );
       break;
     case SerialCommand.BUMP_TOGGLE:
-      console.log(`Toggled bump ${data[1] ? 'on' : 'off'}`);
+      ipcRenderer.send(
+        'serial-console',
+        Buffer.from(`Toggled bump ${data[1] ? 'on' : 'off'}`)
+      );
       break;
     case SerialCommand.COIL_TOGGLE:
-      console.log(`Toggled coil ${data[1] ? 'on' : 'off'}`);
+      ipcRenderer.send(
+        'serial-console',
+        Buffer.from(`Toggled coil ${data[1] ? 'on' : 'off'}`)
+      );
       state.COIL.enabled = data[1] > 0 ? true : false;
-
       break;
     case SerialCommand.ESP:
+      ipcRenderer.send('serial-console', Buffer.from('Received ESP command'));
       break;
     case SerialCommand.FAV_1:
+      ipcRenderer.send('serial-console', Buffer.from('Received FAV_1 command'));
       break;
     case SerialCommand.FAV_2:
+      ipcRenderer.send('serial-console', Buffer.from('Received FAV_2 command'));
       break;
     case SerialCommand.FAV_3:
+      ipcRenderer.send('serial-console', Buffer.from('Received FAV_3 command'));
       break;
     case SerialCommand.FAV_4:
+      ipcRenderer.send('serial-console', Buffer.from('Received FAV_4 command'));
       break;
     case SerialCommand.LED:
       switch (data[1]) {
         case Led.BRIGHTNESS:
+          ipcRenderer.send(
+            'serial-console',
+            Buffer.from('Received Led.BRIGHTNESS command')
+          );
           break;
         case Led.COLOR:
+          ipcRenderer.send(
+            'serial-console',
+            Buffer.from('Received Led.COLOR command')
+          );
           break;
         case Led.ENABLE:
+          ipcRenderer.send(
+            'serial-console',
+            Buffer.from('Received Led.ENABLE command')
+          );
           state.LED.enabled = data[2] > 0 ? true : false;
-          console.log(`Toggled LED ${data[2] ? 'on' : 'off'}`);
           break;
         case Led.MODE:
+          ipcRenderer.send(
+            'serial-console',
+            Buffer.from('Received Led.MODE command')
+          );
           break;
       }
       break;
     case SerialCommand.PID:
+      ipcRenderer.send('serial-console', Buffer.from('Received PID command'));
       break;
     case SerialCommand.TEMP:
+      ipcRenderer.send('serial-console', Buffer.from('Received TEMP command'));
       break;
     case SerialCommand.WIFI:
+      ipcRenderer.send('serial-console', Buffer.from('Received WIFI command'));
       break;
     default:
+      ipcRenderer.send(
+        'serial-console',
+        Buffer.from(`Received unknown command: ${data[0]}`)
+      );
       break;
   }
 };
@@ -310,7 +366,6 @@ ipcRenderer.on(
   'serial-console',
   (event: Electron.IpcRendererEvent, data: Buffer) => {
     const buf: Readonly<Buffer> = Buffer.from(data);
-    console.log(`[serial-console] ${buf.toString()}`);
     for (const callback of serialSubscribers) {
       callback(buf);
     }
@@ -356,10 +411,12 @@ contextBridge.exposeInMainWorld('electronAPI', {
   openExternal: async (url: string) => {
     return await ipcRenderer.invoke('open-external', url);
   },
-  subscribeToSerial: async (callback: (data: Buffer) => void) => {
-    serialSubscribers.push(callback);
+  subscribeToSerial: (callback: (data: Buffer) => void) => {
+    if (!serialSubscribers.includes(callback)) {
+      serialSubscribers.push(callback);
+    }
   },
-  unsubscribeFromSerial: async (callback: (data: Buffer) => void) => {
+  unsubscribeFromSerial: (callback: (data: Buffer) => void) => {
     const index = serialSubscribers.indexOf(callback);
     if (index > -1) {
       serialSubscribers.splice(index, 1);

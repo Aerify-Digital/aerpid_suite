@@ -22,7 +22,11 @@ const config: ForgeConfig = {
   },
   rebuildConfig: {},
   makers: [
-    new MakerSquirrel({}),
+    new MakerSquirrel({
+      iconUrl:
+        'https://raw.githubusercontent.com/Aerify-Digital/aerpid_suite/main/src/img/favicon.png',
+      setupIcon: './src/img/favicon.ico'
+    }),
     new MakerZIP({}, ['darwin']),
     new MakerRpm({}),
     new MakerDeb({

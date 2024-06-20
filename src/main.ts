@@ -187,6 +187,15 @@ const createWindow = (): void => {
     await shell.openExternal(url);
   });
 
+  ipcMain.on('serial-console', (event, data) => {
+    event.sender.send('serial-console', data);
+  });
+
+  ipcMain.on('request-update-menu', (event, isConnected: boolean) => {
+    const template: MenuItemConstructorOptions[] = createMenu(isConnected);
+    Menu.setApplicationMenu(Menu.buildFromTemplate(template));
+  });
+
   ipcMain.on('request-update-menu', (event, isConnected: boolean) => {
     const template: MenuItemConstructorOptions[] = createMenu(isConnected);
     Menu.setApplicationMenu(Menu.buildFromTemplate(template));
@@ -222,7 +231,7 @@ const createWindow = (): void => {
           });
           const versionInfo = response.data;
           if (process.env.NODE_ENV === 'development') {
-            console.log(`Current FirmwareVersion: ${firmwareVersion}`);
+            console.log(`Current Firmware Version: ${firmwareVersion}`);
             console.log(
               `Found FirmwareVersion: ${JSON.stringify(versionInfo)}`
             );

@@ -3,7 +3,7 @@ import ExternalLink from '../components/ExternalLink';
 
 export default function Contact() {
   return (
-    <Grid container direction="column" spacing={1} item sx={{ mt: 2, mb: 2 }}>
+    <Grid container direction="column">
       <Grid item sx={{ mt: 1, mb: 1 }} alignContent="center">
         <Grid
           item
@@ -17,7 +17,7 @@ export default function Contact() {
             paddingRight: '4vmin'
           }}
         >
-          <Typography variant="h4" align="left" paddingLeft={1}>
+          <Typography variant="h5" align="left" style={{ color: '#f8f8f2' }}>
             Contact & Support
           </Typography>
         </Grid>
@@ -30,10 +30,11 @@ export default function Contact() {
             paddingBottom: '4vmin',
             paddingTop: '4vmin',
             paddingLeft: '4vmin',
-            paddingRight: '4vmin'
+            paddingRight: '4vmin',
+            backgroundColor: '#44475a'
           }}
         >
-          <Typography variant="h5" align="center">
+          <Typography variant="h6" align="center" style={{ color: '#f8f8f2' }}>
             Aerify Digital
           </Typography>
           <Grid
@@ -43,7 +44,11 @@ export default function Contact() {
             spacing={1}
           >
             <Grid item>
-              <Typography variant="subtitle1" align="center">
+              <Typography
+                variant="subtitle1"
+                align="center"
+                style={{ color: '#f8f8f2' }}
+              >
                 Visit us at our{' '}
                 {
                   <ExternalLink url="https://aerify.digital">
@@ -54,7 +59,11 @@ export default function Contact() {
               </Typography>
             </Grid>
             <Grid item>
-              <Typography variant="subtitle1" align="center">
+              <Typography
+                variant="subtitle1"
+                align="center"
+                style={{ color: '#f8f8f2' }}
+              >
                 Head to our{' '}
                 {
                   <ExternalLink url="https://aerifydigital.com/store">
@@ -77,10 +86,11 @@ export default function Contact() {
             paddingBottom: '4vmin',
             paddingTop: '4vmin',
             paddingLeft: '4vmin',
-            paddingRight: '4vmin'
+            paddingRight: '4vmin',
+            backgroundColor: '#44475a'
           }}
         >
-          <Typography variant="h5" align="center">
+          <Typography variant="h6" align="center" style={{ color: '#f8f8f2' }}>
             Support & Sales
           </Typography>
           <Grid
@@ -90,7 +100,11 @@ export default function Contact() {
             spacing={1}
           >
             <Grid item>
-              <Typography variant="subtitle1" align="center">
+              <Typography
+                variant="subtitle1"
+                align="center"
+                style={{ color: '#f8f8f2' }}
+              >
                 Check the{' '}
                 {
                   <ExternalLink url="https://docs.aerify.digital/">
@@ -101,7 +115,11 @@ export default function Contact() {
               </Typography>
             </Grid>
             <Grid item>
-              <Typography variant="subtitle1" align="center">
+              <Typography
+                variant="subtitle1"
+                align="center"
+                style={{ color: '#f8f8f2' }}
+              >
                 Check out our{' '}
                 {
                   <ExternalLink url="https://docs.aerify.digital/blog">
@@ -112,7 +130,11 @@ export default function Contact() {
               </Typography>
             </Grid>
             <Grid item>
-              <Typography variant="subtitle1" align="center">
+              <Typography
+                variant="subtitle1"
+                align="center"
+                style={{ color: '#f8f8f2' }}
+              >
                 If you encounter a bug/issue or have any suggestions, please
                 open a{' '}
                 {
@@ -124,10 +146,18 @@ export default function Contact() {
               </Typography>
             </Grid>
             <Grid item>
-              <Typography variant="subtitle1" align="center">
+              <Typography
+                variant="subtitle1"
+                align="center"
+                style={{ color: '#f8f8f2' }}
+              >
                 Need more help?{' '}
-                {<Link href="mailto:support@aerify.digital">Email us</Link>}, we
-                would love the chance to help out!
+                {
+                  <Link href="mailto:support@aerify.digital" color="#8be9fd">
+                    Email us
+                  </Link>
+                }
+                , we would love the chance to help out!
               </Typography>
             </Grid>
           </Grid>
