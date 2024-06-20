@@ -1,28 +1,27 @@
-import './App.css';
 import {
   HashRouter as Router,
   Route,
   Routes,
   useLocation
 } from 'react-router-dom';
-
-import Connect from './views/Connect';
-import { ConnectionProvider } from './contexts/ConnectionContext';
-import Home from './views/Home';
-import Settings from './views/Settings';
-import Heater from './views/Heater';
-import Contact from './views/Contact';
-import Lights from './views/Lights';
-import Comms from './views/Comms';
 import { useEffect } from 'react';
-import Update from './views/Update';
+
+import { ConnectionProvider } from './contexts/ConnectionContext';
+
+import Comms from './views/Comms';
+import Connect from './views/Connect';
+import Contact from './views/Contact';
 import Graphs from './views/Graphs';
-import Terminal from './views/Terminal';
+import Heater from './views/Heater';
+import Home from './views/Home';
+import Lights from './views/Lights';
 import Logs from './views/Logs';
+import Settings from './views/Settings';
+import Update from './views/Update';
+import SerialTerminal from './views/SerialTerminal';
 
-function LocationDisplay() {
+function Debug() {
   const location = useLocation();
-
   useEffect(() => {
     console.log(`location.pathname:${location.pathname}`);
   }, [location.pathname]);
@@ -33,13 +32,13 @@ function App() {
   return (
     <Router>
       <ConnectionProvider>
-        {process.env.NODE_ENV == 'development' ? <LocationDisplay /> : <></>}
+        {process.env.NODE_ENV == 'development' ? <Debug /> : <></>}
         <div className="App">
           <Routes>
             <Route path="/" element={<Connect />} />
             <Route path="/home" element={<Home />} />
             <Route path="/graphs" element={<Graphs />} />
-            <Route path="terminal" element={<Terminal />} />
+            <Route path="terminal" element={<SerialTerminal />} />
             <Route path="/logs" element={<Logs />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/heater" element={<Heater />} />

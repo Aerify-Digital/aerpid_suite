@@ -311,6 +311,9 @@ ipcRenderer.on(
   (event: Electron.IpcRendererEvent, data: Buffer) => {
     const buf: Readonly<Buffer> = Buffer.from(data);
     console.log(`[serial-console] ${buf.toString()}`);
+    for (const callback of serialSubscribers) {
+      callback(buf);
+    }
   }
 );
 
@@ -327,7 +330,7 @@ ipcRenderer.on('update-menu', (event, isConnected) => {
 });
 
 contextBridge.exposeInMainWorld('pidState', { data: () => state });
-
+const serialSubscribers: Array<(data: Buffer) => void> = [];
 contextBridge.exposeInMainWorld('electronAPI', {
   getAppVersion: async () => {
     return await ipcRenderer.invoke('app-version');
@@ -349,5 +352,17 @@ contextBridge.exposeInMainWorld('electronAPI', {
   },
   disconnect: async () => {
     return await ipcRenderer.invoke('disconnect-serial-port');
+  },
+  openExternal: async (url: string) => {
+    return await ipcRenderer.invoke('open-external', url);
+  },
+  subscribeToSerial: async (callback: (data: Buffer) => void) => {
+    serialSubscribers.push(callback);
+  },
+  unsubscribeFromSerial: async (callback: (data: Buffer) => void) => {
+    const index = serialSubscribers.indexOf(callback);
+    if (index > -1) {
+      serialSubscribers.splice(index, 1);
+    }
   }
 });

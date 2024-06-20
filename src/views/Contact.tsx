@@ -1,4 +1,5 @@
-import { Grid, Paper, Typography } from '@mui/material';
+import { Grid, Link, Paper, Typography } from '@mui/material';
+import ExternalLink from '../components/ExternalLink';
 
 export default function Contact() {
   return (
@@ -43,26 +44,24 @@ export default function Contact() {
           >
             <Grid item>
               <Typography variant="subtitle1" align="center">
-                Visit us at our website for the latest updates and product
-                releases!
+                Visit us at our{' '}
+                {
+                  <ExternalLink url="https://aerify.digital">
+                    website
+                  </ExternalLink>
+                }{' '}
+                for the latest updates and product releases!
               </Typography>
             </Grid>
             <Grid item>
               <Typography variant="subtitle1" align="center">
-                Head to the web-store to grab our hottest new tech!
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Typography variant="subtitle1" align="center">
-                Check out our list of authorized retailers here to find us
-                locally!
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Typography variant="subtitle1" align="center">
-                Want to see us in your favorite local shop? Print this and give
-                it to them as a way to introduce us. Or fill out a suggestion
-                form here, and we will reach out ourselves!
+                Head to our{' '}
+                {
+                  <ExternalLink url="https://aerifydigital.com/store">
+                    web store
+                  </ExternalLink>
+                }{' '}
+                to grab our hottest new tech!
               </Typography>
             </Grid>
           </Grid>
@@ -92,27 +91,43 @@ export default function Contact() {
           >
             <Grid item>
               <Typography variant="subtitle1" align="center">
-                Check the digital User Guide for the latest directions on how to
-                use your AerTiny. This is updated with each major firmware
-                upgrade, and may be downloaded as a pdf.
+                Check the{' '}
+                {
+                  <ExternalLink url="https://docs.aerify.digital/">
+                    docs
+                  </ExternalLink>
+                }{' '}
+                for the directions on how to use your AerPID device.
               </Typography>
             </Grid>
             <Grid item>
               <Typography variant="subtitle1" align="center">
-                Head to the FAQ for quick help with your device.
+                Check out our{' '}
+                {
+                  <ExternalLink url="https://docs.aerify.digital/blog">
+                    Welcome Post
+                  </ExternalLink>
+                }{' '}
+                and blog for latest development info.
               </Typography>
             </Grid>
             <Grid item>
               <Typography variant="subtitle1" align="center">
-                Need more help? Email us, we would love the chance to help out!
+                If you encounter a bug, have an issue or suggestion, please open
+                a{' '}
+                {
+                  <ExternalLink url="https://github.com/Aerify-Digital/aerpid_suite/issues/new/choose">
+                    issue
+                  </ExternalLink>
+                }{' '}
+                on our github source code repository.
               </Typography>
             </Grid>
             <Grid item>
               <Typography variant="subtitle1" align="center">
-                If you are interested in becoming an Authorized-Retailer of our
-                devices please feel free to fill out an application here. For
-                any other sales based inquiries please feel free to email sales,
-                they love a good chat!
+                Need more help?{' '}
+                {<Link href="mailto:support@aerify.digital">Email us</Link>}, we
+                would love the chance to help out!
               </Typography>
             </Grid>
           </Grid>

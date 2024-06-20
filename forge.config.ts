@@ -17,9 +17,7 @@ import { spawn } from 'child_process';
 const config: ForgeConfig = {
   packagerConfig: {
     executableName: 'aerpid_suite',
-    asar: {
-      unpack: './node_modules/serialport/**/*'
-    },
+    asar: true,
     icon: './src/img/favicon'
   },
   rebuildConfig: {},

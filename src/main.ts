@@ -6,7 +6,8 @@ import {
   dialog,
   ipcMain,
   Menu,
-  MenuItemConstructorOptions
+  MenuItemConstructorOptions,
+  shell
 } from 'electron';
 import { setup } from './ipc/server';
 import axios from 'axios';
@@ -67,7 +68,11 @@ const createWindow = (): void => {
             accelerator: 'CmdOrCtrl+Shift+S',
             click: function () {
               mainWindow.webContents.executeJavaScript(
-                `window.electronAPI.disconnect();`
+                `let d = async () => {
+                   await window.electronAPI.disconnect();
+                   window.location.hash = '#/';
+                 }
+                 d();`
               );
             }
           },
@@ -177,6 +182,10 @@ const createWindow = (): void => {
     }
     return template as MenuItemConstructorOptions[];
   };
+
+  ipcMain.handle('open-external', async (event, url) => {
+    await shell.openExternal(url);
+  });
 
   ipcMain.on('request-update-menu', (event, isConnected: boolean) => {
     const template: MenuItemConstructorOptions[] = createMenu(isConnected);
