@@ -1,9 +1,10 @@
 {
   "name": "aerpid_suite",
-  "productName": "aerpid_suite",
+  "productName": "AerPID Suite",
   "version": "1.0.0",
-  "description": "My Electron application description",
+  "description": "AerPID Suite is an Electron based desktop application for use with AerPID Devices.",
   "main": ".webpack/main",
+  "repository": "Aerify-Digital/aerpid_suite",
   "scripts": {
     "start": "set NODE_ENV=development && electron-forge start",
     "package": "electron-forge package",
@@ -11,7 +12,8 @@
     "publish": "electron-forge publish",
     "lint": "eslint --ext .ts,.tsx .",
     "check-format": "prettier . --check",
-    "format": "prettier . --write"
+    "format": "prettier . --write",
+    "clean": "rimraf .webpack out"
   },
   "devDependencies": {
     "@electron-forge/cli": "^7.4.0",
@@ -41,6 +43,7 @@
     "postcss": "^8.4.38",
     "postcss-loader": "^8.1.1",
     "prettier": "^3.3.2",
+    "rimraf": "^5.0.7",
     "style-loader": "^3.3.4",
     "tailwindcss": "^3.4.4",
     "ts-loader": "^9.2.2",
@@ -50,8 +53,8 @@
   },
   "keywords": [],
   "author": {
-    "name": "SeqSEE",
-    "email": "SeqSEE@users.noreply.github.com"
+    "name": "Aerify Digital",
+    "email": "support@aerify.digital"
   },
   "license": "MIT",
   "dependencies": {
@@ -61,8 +64,9 @@
     "@mui/material": "^5.15.20",
     "@serialport/bindings-cpp": "^12.0.1",
     "@serialport/parser-inter-byte-timeout": "^12.0.0",
+    "axios": "^1.7.2",
     "electron-squirrel-startup": "^1.0.1",
-    "esptool-js": "^0.3.0",
+    "esptool-js": "^0.3.2",
     "fs-extra": "^11.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

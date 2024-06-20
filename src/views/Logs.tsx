@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
-import { useConnectionContext } from '../contexts/ConnectionContext';
 import { useNavigate } from 'react-router-dom';
+import { useConnectionContext } from '../contexts/ConnectionContext';
+import { useEffect } from 'react';
 import { Grid, Typography } from '@mui/material';
 
-export default function Settings() {
+export default function Logs() {
   const connection = useConnectionContext();
   const navigate = useNavigate();
   useEffect(() => {
@@ -16,7 +16,7 @@ export default function Settings() {
       <Grid item alignContent="center">
         <Grid item sx={{ mt: 3, ml: 2 }}>
           <Typography variant="h5" align="left" style={{ color: '#f8f8f2' }}>
-            Settings
+            Logs
           </Typography>
         </Grid>
       </Grid>

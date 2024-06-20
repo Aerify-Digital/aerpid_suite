@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useConnectionContext } from '../contexts/ConnectionContext';
 import { useEffect } from 'react';
+import { Grid, Typography } from '@mui/material';
 
 export default function Heater() {
   const connection = useConnectionContext();
@@ -10,5 +11,17 @@ export default function Heater() {
       navigate('/');
     }
   }, [connection.connected]);
-  return connection.connected ? <div>Heater</div> : <></>;
+  return connection.connected ? (
+    <Grid container direction="column" item>
+      <Grid item alignContent="center">
+        <Grid item sx={{ mt: 3, ml: 2 }}>
+          <Typography variant="h5" align="left" style={{ color: '#f8f8f2' }}>
+            Heater
+          </Typography>
+        </Grid>
+      </Grid>
+    </Grid>
+  ) : (
+    <></>
+  );
 }

@@ -1,14 +1,18 @@
 enum SerialCommand {
   INIT = 0x20,
   STATUS = 0x21,
+  INIT2 = 0x22,
+  STATUS2 = 0x23,
   AUTO_OFF_LENGTH = 0x35,
   AUTO_OFF_TOGGLE = 0x32,
   ADJUST_AMOUNT = 0x24,
   BLE = 0x50,
+  BUMP_UPDATE = 0x43,
   BUMP_AMOUNT = 0x44,
   BUMP_LENGTH = 0x45,
   BUMP_TOGGLE = 0x42,
   COIL_TOGGLE = 0x52,
+  COIL2_TOGGLE = 0x53,
   ESP = 0x00,
   FAV_1 = 0x86,
   FAV_2 = 0x87,
@@ -16,8 +20,12 @@ enum SerialCommand {
   FAV_4 = 0x89,
   LED = 0x70,
   PID = 0x90,
+  PID2 = 0x91,
   TEMP = 0x10,
-  WIFI = 0x60
+  TEMP2 = 0x13,
+  UNIT = 0x11,
+  WIFI = 0x60,
+  MODE_DEBUG = 0xff
 }
 
 export default SerialCommand;
