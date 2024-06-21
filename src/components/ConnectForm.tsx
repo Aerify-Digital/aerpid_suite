@@ -70,6 +70,13 @@ export default function ConnectForm() {
                 <MenuItem key={`port_none`} value="none" disabled>
                   Select a port
                 </MenuItem>
+                {process.env.NODE_ENV === 'development' ? (
+                  <MenuItem key={`port_devdummy`} value="port_devdummy">
+                    Dummy Port
+                  </MenuItem>
+                ) : (
+                  <></>
+                )}
                 {connection.ports.map((port) => (
                   <MenuItem key={`port_${port}`} value={port}>
                     {port}

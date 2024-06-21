@@ -90,7 +90,7 @@ const createWindow = (): void => {
       }
     ];
 
-    if (isConnected) {
+    if (isConnected || process.env.NODE_ENV === 'development') {
       template.push({
         label: 'Settings',
         submenu: [
@@ -132,8 +132,8 @@ const createWindow = (): void => {
         label: 'Utils',
         submenu: [
           {
-            label: 'Serial Terminal',
-            accelerator: 'CmdOrCtrl+Shift+T',
+            label: 'Serial Console',
+            accelerator: 'CmdOrCtrl+Shift+C',
             click: function () {
               mainWindow.webContents.executeJavaScript(
                 `window.location.hash = '#/terminal';`
@@ -170,7 +170,7 @@ const createWindow = (): void => {
         );
       }
     });
-    if (isUpdateAvailable) {
+    if (isUpdateAvailable || process.env.NODE_ENV === 'development') {
       template.push({
         label: 'Update Firmware',
         click: function () {

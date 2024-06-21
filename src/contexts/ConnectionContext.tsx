@@ -66,7 +66,11 @@ export function ConnectionProvider({ children }: { children: ReactNode }) {
   const connect = async () => {
     const api = (window as any).electronAPI;
     setConnecting(true);
-    if (port != 'none') {
+    if (port === 'port_devdummy') {
+      // Dummy port for development
+      setConnected(true);
+      setInitialized(true);
+    } else if (port != 'none') {
       await api.setSerialPort(port, baudRate);
       const connected = await api.connect();
       if (!connected) {
