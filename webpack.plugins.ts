@@ -1,4 +1,3 @@
-import { ProvidePlugin } from 'webpack';
 // eslint-disable-next-line import/default
 import type ICopyPlugin from 'copy-webpack-plugin';
 import type IForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
@@ -13,8 +12,5 @@ export const plugins = [
   }),
   new CopyPlugin({
     patterns: [{ from: './src/img/favicon.ico', to: './img/favicon.ico' }]
-  }),
-  new ProvidePlugin({
-    process: 'process/browser'
   })
 ];

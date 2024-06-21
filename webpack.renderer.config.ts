@@ -10,12 +10,7 @@ export const rendererConfig: Configuration = {
   plugins,
   resolve: {
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.css'],
-    fallback: {
-      crypto: require.resolve('crypto-browserify'),
-      stream: require.resolve('stream-browserify'),
-      process: require.resolve('process/browser'),
-      vm: require.resolve('vm-browserify')
-    }
+    fallback: {}
   },
   devtool: 'source-map'
 };
