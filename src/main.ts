@@ -151,15 +151,6 @@ const createWindow = (): void => {
             }
           },
           {
-            label: 'Logs',
-            accelerator: 'CmdOrCtrl+Shift+L',
-            click: function () {
-              mainWindow.webContents.executeJavaScript(
-                `window.location.hash = '#/logs';`
-              );
-            }
-          },
-          {
             label: 'Graphs',
             accelerator: 'CmdOrCtrl+Shift+G',
             click: function () {

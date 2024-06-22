@@ -15,7 +15,6 @@ import Graphs from './views/Graphs';
 import Heater from './views/Heater';
 import Home from './views/Home';
 import Lights from './views/Lights';
-import Logs from './views/Logs';
 import Settings from './views/Settings';
 import Update from './views/Update';
 import SerialConsole from './views/SerialConsole';
@@ -46,7 +45,6 @@ function App() {
               <Route path="/preferences" element={<Preferences />} />
               <Route path="/graphs" element={<Graphs />} />
               <Route path="terminal" element={<SerialConsole />} />
-              <Route path="/logs" element={<Logs />} />
               <Route path="/settings" element={<Settings />} />
               <Route path="/heater" element={<Heater />} />
               <Route path="/lights" element={<Lights />} />

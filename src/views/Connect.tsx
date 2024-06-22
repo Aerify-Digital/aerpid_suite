@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useConnectionContext } from '../contexts/ConnectionContext';
 
 export default function Connect() {
-  const [version, setVersion] = useState<string>('');
+  const [version, setVersion] = useState<string>('-');
   const connection = useConnectionContext();
   const navigate = useNavigate();
 
