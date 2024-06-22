@@ -86,6 +86,16 @@ export default class Client {
     contextBridge.exposeInMainWorld('pidState', {
       data: () => this.state
     });
+
+    contextBridge.exposeInMainWorld('electronStore', {
+      get: (key: string) => {
+        return ipcRenderer.invoke('getStoreValue', key);
+      },
+      set: (key: string, value: any) => {
+        return ipcRenderer.invoke('setStoreValue', key, value);
+      }
+    });
+
     contextBridge.exposeInMainWorld('electronAPI', {
       getAppVersion: async () => {
         return await ipcRenderer.invoke('app-version');

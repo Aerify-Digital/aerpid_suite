@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import { BrowserWindow, ipcMain, IpcMainInvokeEvent } from 'electron';
+import Store from 'electron-store';
 import { SerialPort } from 'serialport';
 import { AutoDetectTypes, PortInfo } from '@serialport/bindings-cpp';
 import { InterByteTimeoutParser } from '@serialport/parser-inter-byte-timeout';
@@ -13,7 +14,25 @@ declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 export default class Server {
   private currentPort: PortInfo | undefined;
   private stream: SerialPort<AutoDetectTypes> | undefined;
-  constructor(private mainWindow: BrowserWindow) {}
+  private version = require('../../package.json')
+    ? require('../../package.json').version
+    : '';
+  private store: Store<Record<string, any>>;
+
+  constructor(private mainWindow: BrowserWindow) {
+    this.store = new Store<Record<string, any>>({
+      defaults: {
+        theme: 'dark',
+        checkForUpdates: true,
+        checkFirmwareOnConnect: true
+      }
+    });
+  }
+
+  getVersion() {
+    return this.version;
+  }
+
   async disconnectSerialPort(event?: IpcMainInvokeEvent) {
     if (this.stream && this.stream.isOpen) {
       this.stream.close(async (err: Error | null) => {
@@ -33,6 +52,14 @@ export default class Server {
   }
 
   setup() {
+    ipcMain.handle('getStoreValue', (event, key) => {
+      return (this.store as Record<string, any>).get(key);
+    });
+
+    ipcMain.handle('setStoreValue', (event, key, value) => {
+      return (this.store as Record<string, any>).set(key, value);
+    });
+
     ipcMain.handle('connect-serial-port', async (event: IpcMainInvokeEvent) => {
       event.sender.send('update-menu', true);
       return true;
@@ -72,9 +99,7 @@ export default class Server {
     ipcMain.handle(
       'app-version',
       (event: IpcMainInvokeEvent, ...args: any[]) => {
-        return require('../../package.json')
-          ? require('../../package.json').version
-          : '';
+        return this.version;
       }
     );
 

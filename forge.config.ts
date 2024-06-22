@@ -23,15 +23,21 @@ const config: ForgeConfig = {
   rebuildConfig: {},
   makers: [
     new MakerSquirrel({
+      title: `AerPID Suite`,
       iconUrl:
         'https://raw.githubusercontent.com/Aerify-Digital/aerpid_suite/main/src/img/favicon.png',
       setupIcon: './src/img/favicon.ico'
     }),
     new MakerZIP({}, ['darwin']),
-    new MakerRpm({}),
+    new MakerRpm({
+      options: {
+        productName: `AerPID Suite`,
+        bin: 'aerpid_suite'
+      }
+    }),
     new MakerDeb({
       options: {
-        productName: 'AerPID Suite',
+        productName: `AerPID Suite`,
         bin: 'aerpid_suite'
       }
     })
