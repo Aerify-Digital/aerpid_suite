@@ -68,6 +68,14 @@ export function ConnectionProvider({ children }: { children: ReactNode }) {
     setConnecting(true);
     if (port === 'port_devdummy') {
       // Dummy port for development
+      const connected = await api.connect();
+      if (!connected) {
+        console.error('Failed to connect');
+        setConnecting(false);
+        setInitialized(false);
+        navigate('/');
+        return;
+      }
       setConnected(true);
       setInitialized(true);
     } else if (port != 'none') {
@@ -89,9 +97,7 @@ export function ConnectionProvider({ children }: { children: ReactNode }) {
   };
 
   const disconnect = async () => {
-    const api = (window as any).electronAPI;
-    const disconnected = await api.disconnect();
-    if (disconnected) {
+    if (port === 'port_devdummy') {
       setConnected(false);
       setConnecting(false);
       setInitialized(false);
@@ -100,7 +106,19 @@ export function ConnectionProvider({ children }: { children: ReactNode }) {
       setSerialConsole([]);
       navigate('/');
     } else {
-      console.error('Failed to disconnect');
+      const api = (window as any).electronAPI;
+      const disconnected = await api.disconnect();
+      if (disconnected) {
+        setConnected(false);
+        setConnecting(false);
+        setInitialized(false);
+        setPort('none');
+        setBaudRate(115200);
+        setSerialConsole([]);
+        navigate('/');
+      } else {
+        console.error('Failed to disconnect');
+      }
     }
   };
 

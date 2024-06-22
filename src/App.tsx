@@ -22,6 +22,7 @@ import SerialConsole from './views/SerialConsole';
 import theme from './theme';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
+import Preferences from './views/Preferences';
 
 function Debug() {
   const location = useLocation();
@@ -42,6 +43,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Connect />} />
               <Route path="/home" element={<Home />} />
+              <Route path="/preferences" element={<Preferences />} />
               <Route path="/graphs" element={<Graphs />} />
               <Route path="terminal" element={<SerialConsole />} />
               <Route path="/logs" element={<Logs />} />

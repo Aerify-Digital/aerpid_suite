@@ -55,12 +55,13 @@ const defaultState: SystemState = {
 export default class Client {
   private static instance: Client;
   private state: SystemState;
-  private serialSubscribers: ((data: Readonly<Buffer>) => void)[] = [];
+  private serialSubscribers: ((data: Readonly<Buffer>) => void)[];
   private constructor(
     private ipcRenderer: IpcRenderer,
     contextBridge: ContextBridge
   ) {
     this.state = defaultState;
+    this.serialSubscribers = [];
     ipcRenderer.on(
       'serial-console',
       (event: Electron.IpcRendererEvent, data: Buffer) => {

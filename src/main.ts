@@ -44,8 +44,10 @@ const createWindow = (): void => {
     icon: './src/img/favicon.ico'
   });
   const createMenu = (isConnected: boolean) => {
-    const template: MenuItemConstructorOptions[] = [
-      {
+    const template: MenuItemConstructorOptions[] = [];
+
+    if (isConnected) {
+      template.push({
         label: 'AerTiny',
         submenu: [
           {
@@ -64,17 +66,14 @@ const createWindow = (): void => {
               mainWindow.webContents.toggleDevTools();
             }
           },
+
           {
-            label: 'Serial Setup',
-            accelerator: 'CmdOrCtrl+Shift+S',
+            label: 'Disconnect',
+            accelerator: 'CmdOrCtrl+Shift+D',
             click: function () {
               mainWindow.webContents.executeJavaScript(
-                ` window.electronAPI.disconnect();`
+                `window.electronAPI.disconnect();`
               );
-              mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY, {
-                extraHeaders:
-                  "Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'"
-              });
             }
           },
           {
@@ -88,13 +87,19 @@ const createWindow = (): void => {
             }
           }
         ]
-      }
-    ];
-
-    if (isConnected || process.env.NODE_ENV === 'development') {
+      });
       template.push({
         label: 'Settings',
         submenu: [
+          {
+            label: 'Preferences',
+            accelerator: 'CmdOrCtrl+Shift+P',
+            click: function () {
+              mainWindow.webContents.executeJavaScript(
+                `window.location.hash = '#/preferences';`
+              );
+            }
+          },
           {
             label: 'General',
             click: function () {
@@ -161,6 +166,53 @@ const createWindow = (): void => {
           }
         ]
       });
+    } else {
+      template.push({
+        label: 'AerTiny',
+        submenu: [
+          {
+            label: 'Serial Setup',
+            accelerator: 'CmdOrCtrl+Shift+S',
+            click: function () {
+              mainWindow.webContents.executeJavaScript(
+                `window.electronAPI.disconnect();`
+              );
+            }
+          },
+          {
+            label: 'DevTools',
+            accelerator: 'CmdOrCtrl+Shift+I',
+            click: function () {
+              mainWindow.webContents.toggleDevTools();
+            }
+          },
+          {
+            type: 'separator'
+          },
+          {
+            label: 'Quit',
+            accelerator: 'CmdOrCtrl+Q',
+            click: function () {
+              app.quit();
+            }
+          }
+        ]
+      });
+
+      template.push({
+        label: 'Settings',
+        submenu: [
+          {
+            label: 'Preferences',
+            accelerator: 'CmdOrCtrl+Shift+P',
+            click: function () {
+              mainWindow.webContents.executeJavaScript(
+                `window.location.hash = '#/preferences';`
+              );
+            }
+          }
+        ]
+      });
     }
 
     template.push({
@@ -171,7 +223,7 @@ const createWindow = (): void => {
         );
       }
     });
-    if (isUpdateAvailable || process.env.NODE_ENV === 'development') {
+    if (isUpdateAvailable) {
       template.push({
         label: 'Update Firmware',
         click: function () {
@@ -190,11 +242,6 @@ const createWindow = (): void => {
 
   ipcMain.on('serial-console', (event, data) => {
     event.sender.send('serial-console', data);
-  });
-
-  ipcMain.on('request-update-menu', (event, isConnected: boolean) => {
-    const template: MenuItemConstructorOptions[] = createMenu(isConnected);
-    Menu.setApplicationMenu(Menu.buildFromTemplate(template));
   });
 
   ipcMain.on('request-update-menu', (event, isConnected: boolean) => {

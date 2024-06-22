@@ -14,6 +14,23 @@ export default class Server {
   private currentPort: PortInfo | undefined;
   private stream: SerialPort<AutoDetectTypes> | undefined;
   constructor(private mainWindow: BrowserWindow) {}
+  async disconnectSerialPort(event?: IpcMainInvokeEvent) {
+    if (this.stream && this.stream.isOpen) {
+      this.stream.close(async (err: Error | null) => {
+        if (err) {
+          console.log('Error: ', err.message);
+          this.stream = undefined;
+        } else {
+          event.sender.send('update-menu', false);
+          this.stream = undefined;
+          this.currentPort = undefined;
+          await this.mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
+        }
+      });
+    }
+
+    return true;
+  }
 
   setup() {
     ipcMain.handle('connect-serial-port', async (event: IpcMainInvokeEvent) => {
@@ -25,17 +42,29 @@ export default class Server {
       'disconnect-serial-port',
       async (event: IpcMainInvokeEvent) => {
         if (this.stream && this.stream.isOpen) {
-          this.stream.close(async (err: Error | null) => {
-            if (err) {
-              console.log('Error: ', err.message);
-              this.stream = undefined;
-            } else {
-              event.sender.send('update-menu', false);
-              //await mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
-            }
-          });
+          try {
+            this.stream.close(async (err: Error | null) => {
+              if (err) {
+                console.log('Error: ', err.message);
+                this.stream = undefined;
+                this.currentPort = undefined;
+              } else {
+                event.sender.send('update-menu', false);
+                this.stream = undefined;
+                this.currentPort = undefined;
+                this.mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
+              }
+            });
+          } catch (e) {
+            console.log('Error: ', e.message);
+            this.stream = undefined;
+            this.currentPort = undefined;
+          }
+        } else {
+          event.sender.send('update-menu', false);
+          this.mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
+          return true;
         }
-
         return true;
       }
     );
