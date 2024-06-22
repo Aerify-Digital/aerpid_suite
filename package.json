@@ -1,7 +1,7 @@
 {
   "name": "aerpid_suite",
   "productName": "AerPID Suite",
-  "version": "1.0.0-beta",
+  "version": "1.0.0",
   "description": "AerPID Suite is an Electron based desktop application for use with AerPID Devices.",
   "main": ".webpack/main",
   "repository": "Aerify-Digital/aerpid_suite",

@@ -52,7 +52,7 @@ const createWindow = (): void => {
         submenu: [
           {
             label: 'Home',
-            accelerator: 'CmdOrCtrl+Shift+H',
+            accelerator: 'CmdOrCtrl+H',
             click: function () {
               mainWindow.webContents.executeJavaScript(
                 `window.location.hash = '#/home';`
@@ -69,7 +69,7 @@ const createWindow = (): void => {
 
           {
             label: 'Disconnect',
-            accelerator: 'CmdOrCtrl+Shift+D',
+            accelerator: 'CmdOrCtrl+D',
             click: function () {
               mainWindow.webContents.executeJavaScript(
                 `window.electronAPI.disconnect();`
@@ -102,6 +102,7 @@ const createWindow = (): void => {
           },
           {
             label: 'General',
+            accelerator: 'CmdOrCtrl+Shift+G',
             click: function () {
               mainWindow.webContents.executeJavaScript(
                 `window.location.hash = '#/settings';`
@@ -110,6 +111,7 @@ const createWindow = (): void => {
           },
           {
             label: 'Heater',
+            accelerator: 'CmdOrCtrl+Shift+H',
             click: function () {
               mainWindow.webContents.executeJavaScript(
                 `window.location.hash = '#/heater';`
@@ -118,6 +120,7 @@ const createWindow = (): void => {
           },
           {
             label: 'Lights',
+            accelerator: 'CmdOrCtrl+Shift+L',
             click: function () {
               mainWindow.webContents.executeJavaScript(
                 `window.location.hash = '#/lights';`
@@ -126,6 +129,7 @@ const createWindow = (): void => {
           },
           {
             label: 'Communications',
+            accelerator: 'CmdOrCtrl+Shift+C',
             click: function () {
               mainWindow.webContents.executeJavaScript(
                 `window.location.hash = '#/comms';`
@@ -139,7 +143,7 @@ const createWindow = (): void => {
         submenu: [
           {
             label: 'Serial Console',
-            accelerator: 'CmdOrCtrl+Shift+C',
+            accelerator: 'CmdOrCtrl+Shift+S',
             click: function () {
               mainWindow.webContents.executeJavaScript(
                 `window.location.hash = '#/terminal';`
@@ -172,7 +176,7 @@ const createWindow = (): void => {
         submenu: [
           {
             label: 'Serial Setup',
-            accelerator: 'CmdOrCtrl+Shift+S',
+            accelerator: 'CmdOrCtrl+S',
             click: function () {
               mainWindow.webContents.executeJavaScript(
                 `window.electronAPI.disconnect();`
@@ -226,6 +230,7 @@ const createWindow = (): void => {
     if (isUpdateAvailable) {
       template.push({
         label: 'Update Firmware',
+        accelerator: 'CmdOrCtrl+Shift+U',
         click: function () {
           mainWindow.webContents.executeJavaScript(
             `window.location.hash = '#/update';`
