@@ -102,7 +102,7 @@ const createWindow = (): void => {
           },
           {
             label: 'General',
-            accelerator: 'CmdOrCtrl+Shift+G',
+            accelerator: 'CmdOrCtrl+Shift+S',
             click: function () {
               mainWindow.webContents.executeJavaScript(
                 `window.location.hash = '#/settings';`
@@ -143,7 +143,7 @@ const createWindow = (): void => {
         submenu: [
           {
             label: 'Serial Console',
-            accelerator: 'CmdOrCtrl+Shift+S',
+            accelerator: 'CmdOrCtrl+Shift+X',
             click: function () {
               mainWindow.webContents.executeJavaScript(
                 `window.location.hash = '#/terminal';`
