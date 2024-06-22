@@ -22,6 +22,10 @@ import theme from './theme';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 import Preferences from './views/Preferences';
+import {
+  PreferencesProvider,
+  usePreferences
+} from './contexts/PreferencesContext';
 
 function Debug() {
   const location = useLocation();
@@ -31,9 +35,11 @@ function Debug() {
   return <></>;
 }
 
-function App() {
+function AppContent() {
+  const preferences = usePreferences();
+
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme(preferences.theme)}>
       <CssBaseline />
       <Router>
         <ConnectionProvider>
@@ -56,6 +62,14 @@ function App() {
         </ConnectionProvider>
       </Router>
     </ThemeProvider>
+  );
+}
+
+function App() {
+  return (
+    <PreferencesProvider>
+      <AppContent />
+    </PreferencesProvider>
   );
 }
 
