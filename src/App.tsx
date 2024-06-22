@@ -44,7 +44,7 @@ function App() {
               <Route path="/home" element={<Home />} />
               <Route path="/preferences" element={<Preferences />} />
               <Route path="/graphs" element={<Graphs />} />
-              <Route path="terminal" element={<SerialConsole />} />
+              <Route path="/console" element={<SerialConsole />} />
               <Route path="/settings" element={<Settings />} />
               <Route path="/heater" element={<Heater />} />
               <Route path="/lights" element={<Lights />} />

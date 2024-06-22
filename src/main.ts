@@ -146,7 +146,7 @@ const createWindow = (): void => {
             accelerator: 'CmdOrCtrl+Shift+X',
             click: function () {
               mainWindow.webContents.executeJavaScript(
-                `window.location.hash = '#/terminal';`
+                `window.location.hash = '#/console';`
               );
             }
           },
