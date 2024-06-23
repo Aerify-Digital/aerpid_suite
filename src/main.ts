@@ -49,7 +49,7 @@ const createWindow = (): void => {
 
     if (isConnected) {
       template.push({
-        label: 'AerTiny',
+        label: 'AerPID',
         submenu: [
           {
             label: 'Home',
@@ -57,6 +57,15 @@ const createWindow = (): void => {
             click: function () {
               mainWindow.webContents.executeJavaScript(
                 `window.location.hash = '#/home';`
+              );
+            }
+          },
+          {
+            label: 'Preferences',
+            accelerator: 'CmdOrCtrl+Shift+P',
+            click: function () {
+              mainWindow.webContents.executeJavaScript(
+                `window.location.hash = '#/preferences';`
               );
             }
           },
@@ -92,15 +101,6 @@ const createWindow = (): void => {
       template.push({
         label: 'Settings',
         submenu: [
-          {
-            label: 'Preferences',
-            accelerator: 'CmdOrCtrl+Shift+P',
-            click: function () {
-              mainWindow.webContents.executeJavaScript(
-                `window.location.hash = '#/preferences';`
-              );
-            }
-          },
           {
             label: 'General',
             accelerator: 'CmdOrCtrl+Shift+S',
@@ -164,8 +164,17 @@ const createWindow = (): void => {
       });
     } else {
       template.push({
-        label: 'AerTiny',
+        label: 'AerPID',
         submenu: [
+          {
+            label: 'Preferences',
+            accelerator: 'CmdOrCtrl+Shift+P',
+            click: function () {
+              mainWindow.webContents.executeJavaScript(
+                `window.location.hash = '#/preferences';`
+              );
+            }
+          },
           {
             label: 'Serial Setup',
             accelerator: 'CmdOrCtrl+S',
@@ -190,21 +199,6 @@ const createWindow = (): void => {
             accelerator: 'CmdOrCtrl+Q',
             click: function () {
               app.quit();
-            }
-          }
-        ]
-      });
-
-      template.push({
-        label: 'Settings',
-        submenu: [
-          {
-            label: 'Preferences',
-            accelerator: 'CmdOrCtrl+Shift+P',
-            click: function () {
-              mainWindow.webContents.executeJavaScript(
-                `window.location.hash = '#/preferences';`
-              );
             }
           }
         ]
