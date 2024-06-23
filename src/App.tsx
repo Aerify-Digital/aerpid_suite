@@ -4,7 +4,7 @@ import {
   Routes,
   useLocation
 } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { ConnectionProvider } from './contexts/ConnectionContext';
 
@@ -37,9 +37,12 @@ function Debug() {
 
 function AppContent() {
   const preferences = usePreferences();
-
+  const [curTheme, setCurTheme] = useState(theme(preferences.theme));
+  useEffect(() => {
+    setCurTheme(theme(preferences.theme));
+  }, [preferences.theme]);
   return (
-    <ThemeProvider theme={theme(preferences.theme)}>
+    <ThemeProvider theme={curTheme}>
       <CssBaseline />
       <Router>
         <ConnectionProvider>

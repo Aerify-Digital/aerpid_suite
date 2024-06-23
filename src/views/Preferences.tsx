@@ -77,6 +77,7 @@ export default function Preferences() {
             <FormControlLabel
               control={
                 <Switch
+                  color="primary"
                   checked={preferences.checkForUpdates}
                   onChange={handleUpdateChange}
                 />
@@ -89,6 +90,7 @@ export default function Preferences() {
             <FormControlLabel
               control={
                 <Switch
+                  color="primary"
                   checked={preferences.checkFirmwareOnConnect}
                   onChange={handleFirmwareChange}
                 />
