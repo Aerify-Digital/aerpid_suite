@@ -5,6 +5,11 @@ const theme = (mode: 'dark' | 'light') =>
   createTheme({
     palette: {
       mode,
+      error: {
+        light: '#fc9694',
+        main: '#ff5555',
+        dark: '#7e3b42'
+      },
       primary: {
         light: '#246bb2',
         main: mode === 'dark' ? '#8be9fd' : '#246bb2',
