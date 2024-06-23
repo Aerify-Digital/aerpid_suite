@@ -10,6 +10,11 @@ const theme = (mode: 'dark' | 'light') =>
         main: '#ff5555',
         dark: '#7e3b42'
       },
+      warning: {
+        light: '#fcd2a2',
+        main: '#ffb86c',
+        dark: '#7e634c'
+      },
       primary: {
         light: '#246bb2',
         main: mode === 'dark' ? '#8be9fd' : '#246bb2',

@@ -34,9 +34,16 @@ export default function DeviceSettings() {
             </Grid>
             <Grid item textAlign="center">
               <TextField
-                label="System Version"
+                label="Firmware Version"
                 variant="outlined"
                 value="3.2.4"
+              />
+            </Grid>
+            <Grid item textAlign="center">
+              <TextField
+                label="Web Version"
+                variant="outlined"
+                value="0.3.74"
               />
             </Grid>
             <Grid item textAlign="center">
@@ -64,39 +71,39 @@ export default function DeviceSettings() {
                 </RadioGroup>
               </FormControl>
             </Grid>
-            <Grid item container xs={12}>
-              <Grid item>
+            <Grid item container xs={12} spacing="2">
+              <Grid item xs={12} textAlign="center">
                 <Typography variant="body1">Advanced Options</Typography>
               </Grid>
-              <Grid item container>
-                <Grid item xs={6}>
-                  <Button
-                    variant="outlined"
-                    color="warning"
-                    onClick={() => {
-                      /* Implement Reboot AerPID logic */
-                    }}
-                  >
-                    Reboot AerPID
-                  </Button>{' '}
-                </Grid>
-                <Grid item xs={6}>
-                  <Button
-                    variant="outlined"
-                    color="error"
-                    onClick={() => {
-                      /* Implement Factory Reset logic */
-                    }}
-                  >
-                    Factory Reset
-                  </Button>
-                </Grid>
-                <Grid item xs={12} textAlign="center">
-                  <FormControlLabel
-                    control={<Switch color="primary" onChange={() => {}} />}
-                    label="Debug Mode"
-                  />
-                </Grid>
+              <Grid item xs={12} textAlign="center">
+                <Button
+                  variant="contained"
+                  color="warning"
+                  sx={{ fontWeight: 'bold' }}
+                  onClick={() => {
+                    /* Implement Reboot AerPID logic */
+                  }}
+                >
+                  Reboot AerPID
+                </Button>
+              </Grid>
+              <Grid item xs={12} textAlign="center">
+                <Button
+                  variant="contained"
+                  color="error"
+                  sx={{ fontWeight: 'bold' }}
+                  onClick={() => {
+                    /* Implement Factory Reset logic */
+                  }}
+                >
+                  Factory Reset
+                </Button>
+              </Grid>
+              <Grid item xs={12} textAlign="center">
+                <FormControlLabel
+                  control={<Switch color="primary" onChange={() => {}} />}
+                  label="Debug Mode"
+                />
               </Grid>
             </Grid>
             <Grid item>

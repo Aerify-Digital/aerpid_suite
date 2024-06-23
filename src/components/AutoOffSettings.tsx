@@ -32,13 +32,8 @@ export default function AutoOffSettings() {
               <Box sx={{ pt: 2, pb: 2 }}>
                 <Typography variant="subtitle2">
                   "Auto-Off" is one of several built in safety features of your
-                  AerTiny Device. This feature allows helps to allieviate some
-                  worry while out and about that you may have left your heating
-                  element on.
-                  <br />
-                  <br />
-                  After the set amount of time of no activity, your device will
-                  turn off the heating element.
+                  AerTiny Device. After the set amount of time of no activity,
+                  your device will turn off the heating element.
                 </Typography>
               </Box>
             </Grid>

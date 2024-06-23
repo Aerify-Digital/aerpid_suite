@@ -1,4 +1,5 @@
-import { Box, Grid, Paper, Typography } from '@mui/material';
+import { Box, Grid, Paper, TextField, Typography } from '@mui/material';
+import Favorite from './Favorite';
 
 export default function FavoriteSettings() {
   return (
@@ -10,7 +11,18 @@ export default function FavoriteSettings() {
               Favorites
             </Typography>
           </Grid>
-          <Grid item container direction="column" spacing={2}></Grid>
+          <Grid item container direction="column" spacing={2}>
+            <Favorite favNum={1} />
+            <Favorite favNum={2} />
+            <Favorite favNum={3} />
+            <Favorite favNum={4} />
+            <Grid item>
+              <Typography variant="subtitle2">
+                These settings will be applied automatically once you have
+                finished changing them.
+              </Typography>
+            </Grid>
+          </Grid>
         </Paper>
       </Box>
     </Grid>
