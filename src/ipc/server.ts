@@ -1,5 +1,10 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import { BrowserWindow, ipcMain, IpcMainInvokeEvent } from 'electron';
+import {
+  BrowserWindow,
+  ipcMain,
+  IpcMainInvokeEvent,
+  nativeTheme
+} from 'electron';
 import Store from 'electron-store';
 import { SerialPort } from 'serialport';
 import { AutoDetectTypes, PortInfo } from '@serialport/bindings-cpp';
@@ -20,9 +25,10 @@ export default class Server {
   private store: Store<Record<string, any>>;
 
   constructor(private mainWindow: BrowserWindow) {
+    const theme = nativeTheme.shouldUseDarkColors ? 'dark' : 'light';
     this.store = new Store<Record<string, any>>({
       defaults: {
-        theme: 'dark',
+        theme,
         checkForUpdates: true,
         checkFirmwareOnConnect: true
       }
