@@ -16,7 +16,7 @@ export default function Lights() {
       <Grid item alignContent="center">
         <Grid item sx={{ mt: 3, ml: 2 }}>
           <Typography variant="h5" align="left">
-            Lights
+            Light Setttings
           </Typography>
         </Grid>
       </Grid>
