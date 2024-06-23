@@ -15,20 +15,29 @@ export default function Comms() {
   }, [connection.connected]);
   return connection.connected ? (
     <Grid container direction="column" item>
-      <Grid item alignContent="center">
+      <Grid item direction="row">
         <Grid item sx={{ mt: 3, ml: 2 }}>
-          <Typography variant="h5" align="left">
-            Network Configuration
-          </Typography>
-          <NetworkConfiguration />
+          <Typography variant="h5">Communications Settings</Typography>
         </Grid>
       </Grid>
-      <Grid item alignContent="center">
-        <Grid item sx={{ mt: 3, ml: 2 }}>
-          <Typography variant="h5" align="left">
-            Comms Configuration
-          </Typography>
-          <CommsConfiguration />
+      <Grid item container direction="row">
+        <Grid container direction="column" item>
+          <Grid item alignContent="center">
+            <Grid item sx={{ mt: 3, ml: 2 }}>
+              <Typography variant="h5" align="left">
+                Network Configuration
+              </Typography>
+              <NetworkConfiguration />
+            </Grid>
+          </Grid>
+          <Grid item alignContent="center">
+            <Grid item sx={{ mt: 3, ml: 2 }}>
+              <Typography variant="h5" align="left">
+                USB Configuration
+              </Typography>
+              <CommsConfiguration />
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
     </Grid>

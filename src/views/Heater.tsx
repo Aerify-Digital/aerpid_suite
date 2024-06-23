@@ -17,20 +17,16 @@ export default function Heater() {
   }, [connection.connected]);
 
   return connection.connected ? (
-    <Grid container direction="column" item>
-      <Grid item direction="row">
-        <Grid item sx={{ mt: 3, ml: 2 }}>
-          <Box sx={{ zIndex: 1000, p: 2 }}>
-            <Typography variant="h5">Heater Settings</Typography>
-          </Box>
-        </Grid>
-        <Grid item container direction="row">
-          <PidSettings />
-        </Grid>
-        <Grid item container direction="row" spacing={2} sx={{ pl: 2, pr: 2 }}>
-          <BumpSettings />
-          <AutoOffSettings />
-        </Grid>
+    <Grid item container>
+      <Grid item sx={{ pt: 1, pb: 1, pl: 2 }} direction="row">
+        <Typography variant="h5">Heater Settings</Typography>
+      </Grid>
+      <Grid item container direction="row">
+        <PidSettings />
+      </Grid>
+      <Grid item container direction="row">
+        <BumpSettings />
+        <AutoOffSettings />
       </Grid>
     </Grid>
   ) : (
