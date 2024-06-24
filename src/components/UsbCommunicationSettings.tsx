@@ -23,7 +23,9 @@ export default function UsbCommunicationSettings() {
           <Grid item container direction="column" spacing={2}>
             <Grid item textAlign="center">
               <FormControlLabel
-                control={<Switch color="primary" onChange={() => {}} />}
+                control={
+                  <Switch color="primary" onChange={() => {}} checked={true} />
+                }
                 label="Enabled"
               />
             </Grid>

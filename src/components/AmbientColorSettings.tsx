@@ -11,14 +11,17 @@ export default function AmbientColorSettings() {
             </Typography>
           </Grid>
           <Grid item container direction="column" spacing={2}>
-            <Grid item textAlign="center">
+            <Grid item textAlign="center" sx={{ pl: 4, pr: 4 }}>
               <Typography variant="overline">Brightness</Typography>
               <Slider
                 defaultValue={50}
                 aria-labelledby="brightness-slider"
                 valueLabelDisplay="auto"
                 step={1}
-                marks
+                marks={[
+                  { value: 0, label: '0%' },
+                  { value: 100, label: '100%' }
+                ]}
                 min={0}
                 max={100}
                 onChange={() => {}}

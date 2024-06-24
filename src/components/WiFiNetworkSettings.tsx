@@ -65,7 +65,11 @@ export default function WiFiNetworkSettings() {
             </Grid>
             <Grid item textAlign="center">
               <TextField
-                label="Password"
+                label={
+                  scanning || nearbyNetworks.length === 0 || !ssid
+                    ? 'Scan First'
+                    : 'Password (Optional)'
+                }
                 variant="outlined"
                 type={showPassword ? 'text' : 'password'}
                 fullWidth
@@ -78,6 +82,7 @@ export default function WiFiNetworkSettings() {
                   <Checkbox
                     checked={showPassword}
                     onChange={handleCheckboxChange}
+                    disabled={scanning || nearbyNetworks.length === 0 || !ssid}
                   />
                 }
                 label="Show Password"

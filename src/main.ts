@@ -102,7 +102,7 @@ const createWindow = (): void => {
         label: 'Settings',
         submenu: [
           {
-            label: 'General',
+            label: 'Device Settings',
             accelerator: 'CmdOrCtrl+Shift+S',
             click: function () {
               mainWindow.webContents.executeJavaScript(
@@ -133,7 +133,7 @@ const createWindow = (): void => {
             accelerator: 'CmdOrCtrl+Shift+C',
             click: function () {
               mainWindow.webContents.executeJavaScript(
-                `window.location.hash = '#/comms';`
+                `window.location.hash = '#/communications';`
               );
             }
           }

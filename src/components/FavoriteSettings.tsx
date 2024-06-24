@@ -11,11 +11,25 @@ export default function FavoriteSettings() {
               Favorites
             </Typography>
           </Grid>
-          <Grid item container direction="column" spacing={2}>
-            <Favorite favNum={1} />
-            <Favorite favNum={2} />
-            <Favorite favNum={3} />
-            <Favorite favNum={4} />
+          <Grid
+            item
+            container
+            direction="column"
+            spacing={2}
+            justifyContent="center"
+          >
+            <Grid item textAlign="center" justifyContent="center">
+              <Favorite favNum={1} />
+            </Grid>
+            <Grid item textAlign="center" justifyContent="center">
+              <Favorite favNum={2} />
+            </Grid>
+            <Grid item textAlign="center" justifyContent="center">
+              <Favorite favNum={3} />
+            </Grid>
+            <Grid item textAlign="center" justifyContent="center">
+              <Favorite favNum={4} />
+            </Grid>
             <Grid item>
               <Typography variant="subtitle2">
                 These settings will be applied automatically once you have

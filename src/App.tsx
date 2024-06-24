@@ -8,7 +8,6 @@ import { useEffect, useState } from 'react';
 
 import { ConnectionProvider } from './contexts/ConnectionContext';
 
-import Comms from './views/Comms';
 import Connect from './views/Connect';
 import Contact from './views/Contact';
 import Graphs from './views/Graphs';
@@ -26,6 +25,7 @@ import {
   PreferencesProvider,
   usePreferences
 } from './contexts/PreferencesContext';
+import Communications from './views/Communications';
 
 function Debug() {
   const location = useLocation();
@@ -57,7 +57,7 @@ function AppContent() {
               <Route path="/settings" element={<Settings />} />
               <Route path="/heater" element={<Heater />} />
               <Route path="/lights" element={<Lights />} />
-              <Route path="/comms" element={<Comms />} />
+              <Route path="/communications" element={<Communications />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/update" element={<Update />} />
             </Routes>

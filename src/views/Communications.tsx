@@ -3,9 +3,9 @@ import { useConnectionContext } from '../contexts/ConnectionContext';
 import { useEffect } from 'react';
 import { Box, Grid, Typography } from '@mui/material';
 import NetworkConfiguration from '../components/NetworkConfiguration';
-import CommsConfiguration from '../components/CommsConfiguration';
+import ComunicationsConfiguration from '../components/ComunicationsConfiguration';
 
-export default function Comms() {
+export default function Communications() {
   const connection = useConnectionContext();
   const navigate = useNavigate();
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function Comms() {
               <NetworkConfiguration />
             </Grid>
             <Grid item alignContent="center">
-              <CommsConfiguration />
+              <ComunicationsConfiguration />
             </Grid>
           </Grid>
         </Grid>
