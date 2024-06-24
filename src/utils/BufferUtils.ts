@@ -1,6 +1,6 @@
 import InitData from '../interface/InitData';
 import Constants from '../constants';
-import { RGBColor } from '../interface/SystemState';
+import RGBColor from '../type/RGBColor';
 import { getNumber, bytesToDouble } from './NumberUtils';
 
 /**

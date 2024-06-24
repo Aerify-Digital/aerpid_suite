@@ -1,5 +1,6 @@
 import { ContextBridge, IpcRenderer } from 'electron';
-import SystemState, { emptyColor } from '../interface/SystemState';
+import SystemState from '../interface/SystemState';
+import { emptyColor } from '../type/RGBColor';
 import LedMode from '../enum/LedMode';
 import InitData from '../interface/InitData';
 import SerialCommand from '../enum/SerialCommand';

@@ -1,8 +1,5 @@
+import RGBColor from '../type/RGBColor';
 import LedMode from '../enum/LedMode';
-
-export type RGBColor = [number, number, number];
-
-export const emptyColor: RGBColor = [0, 0, 0];
 
 export default interface SystemState {
   INITIALIZED: boolean;

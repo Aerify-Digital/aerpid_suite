@@ -10,8 +10,10 @@ import {
   Stack
 } from '@mui/material';
 import LedMode from '../enum/LedMode';
+import { useLedContext } from '../contexts/LedContext';
 
 export default function LightingPresetSettings() {
+  const led = useLedContext();
   return (
     <Grid item xs={6}>
       <Box sx={{ m: 1 }}>
@@ -30,26 +32,51 @@ export default function LightingPresetSettings() {
                       value={LedMode.RAINBOW_WAVE}
                       control={<Radio />}
                       label="Rainbow Wave"
+                      checked={led.ledMode === LedMode.RAINBOW_WAVE}
+                      onClick={() => {
+                        led.setLedMode(LedMode.RAINBOW_WAVE);
+                      }}
+                      disabled={led.status}
                     />
                     <FormControlLabel
                       value={LedMode.RAINBOW}
                       control={<Radio />}
                       label="Rainbow"
+                      checked={led.ledMode === LedMode.RAINBOW}
+                      onClick={() => {
+                        led.setLedMode(LedMode.RAINBOW);
+                      }}
+                      disabled={led.status}
                     />
                     <FormControlLabel
                       value={LedMode.RAINBOW_PULSE}
                       control={<Radio />}
                       label="Rainbow Pulse"
+                      checked={led.ledMode === LedMode.RAINBOW_PULSE}
+                      onClick={() => {
+                        led.setLedMode(LedMode.RAINBOW_PULSE);
+                      }}
+                      disabled={led.status}
                     />
                     <FormControlLabel
                       value={LedMode.SHIFT}
                       control={<Radio />}
                       label="Color Shift"
+                      checked={led.ledMode === LedMode.SHIFT}
+                      onClick={() => {
+                        led.setLedMode(LedMode.SHIFT);
+                      }}
+                      disabled={led.status}
                     />
                     <FormControlLabel
                       value={LedMode.PULSE}
                       control={<Radio />}
                       label="Color Pulse"
+                      checked={led.ledMode === LedMode.PULSE}
+                      onClick={() => {
+                        led.setLedMode(LedMode.PULSE);
+                      }}
+                      disabled={led.status}
                     />
                   </RadioGroup>
                 </Stack>

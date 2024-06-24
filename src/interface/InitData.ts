@@ -1,4 +1,4 @@
-import { RGBColor } from './SystemState';
+import RGBColor from '../type/RGBColor';
 
 export default interface InitData {
   deviceModel: number;

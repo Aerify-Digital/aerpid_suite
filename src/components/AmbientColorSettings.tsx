@@ -12,6 +12,20 @@ export default function AmbientColorSettings() {
           </Grid>
           <Grid item container direction="column" spacing={2}>
             <Grid item textAlign="center" sx={{ pl: 4, pr: 4 }}>
+              <Typography variant="overline">Color</Typography>
+            </Grid>
+            <Grid item>
+              <Box sx={{ pt: 2, pb: 2 }}>
+                <Typography variant="subtitle2">
+                  The color you set here will be overridden if you decide to use
+                  one of the Ambient Lighting Patterns. It will return though if
+                  you turn off the pattern at any point.
+                </Typography>
+              </Box>
+            </Grid>
+          </Grid>
+          <Grid item container direction="column" spacing={2}>
+            <Grid item textAlign="center" sx={{ pl: 4, pr: 4 }}>
               <Typography variant="overline">Brightness</Typography>
               <Slider
                 defaultValue={50}

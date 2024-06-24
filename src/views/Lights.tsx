@@ -27,11 +27,11 @@ export default function Lights() {
           <Grid item container>
             <Grid item container direction="row">
               <LedSettings />
-              <LightingPresetSettings />
+              <AmbientPatternSettings />
             </Grid>
             <Grid item container direction="row">
+              <LightingPresetSettings />
               <AmbientColorSettings />
-              <AmbientPatternSettings />
             </Grid>
           </Grid>
         </Grid>

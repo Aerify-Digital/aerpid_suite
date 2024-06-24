@@ -7,8 +7,11 @@ import {
   Switch,
   Typography
 } from '@mui/material';
+import { useLedContext } from '../contexts/LedContext';
 
 export default function LedSettings() {
+  const led = useLedContext();
+
   return (
     <Grid item xs={6}>
       <Box sx={{ m: 1 }}>
@@ -26,13 +29,13 @@ export default function LedSettings() {
               <Grid item xs={6} textAlign="center">
                 <Button
                   variant="contained"
-                  color="error"
+                  color={led.enabled ? 'error' : 'success'}
                   sx={{ fontWeight: 'bold' }}
                   onClick={() => {
-                    /* Implement Reboot AerPID logic */
+                    //TODO: Implement Enable/Disable logic
                   }}
                 >
-                  Disable LEDs
+                  {led.enabled ? 'Disable' : 'Enable'} LEDs
                 </Button>
               </Grid>
               <Grid item xs={6} textAlign="center">
@@ -41,7 +44,7 @@ export default function LedSettings() {
                   color="primary"
                   sx={{ fontWeight: 'bold' }}
                   onClick={() => {
-                    /* Implement Factory Reset logic */
+                    //TODO: Implement Reset logic
                   }}
                 >
                   Reset LEDs
@@ -51,7 +54,18 @@ export default function LedSettings() {
           </Grid>
           <Grid item textAlign="center">
             <FormControlLabel
-              control={<Switch color="primary" onChange={() => {}} />}
+              control={
+                <Switch
+                  color="primary"
+                  onChange={(
+                    event: React.ChangeEvent<HTMLInputElement>,
+                    checked: boolean
+                  ) => {
+                    led.setStatus(checked);
+                  }}
+                  checked={led.status}
+                />
+              }
               label="Status"
             />
           </Grid>

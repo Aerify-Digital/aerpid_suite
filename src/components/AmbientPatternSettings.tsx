@@ -10,8 +10,10 @@ import {
   Stack
 } from '@mui/material';
 import LedMode from '../enum/LedMode';
+import { useLedContext } from '../contexts/LedContext';
 
 export default function AmbientPatternSettings() {
+  const led = useLedContext();
   return (
     <Grid item xs={6}>
       <Box sx={{ m: 1 }}>
@@ -31,16 +33,31 @@ export default function AmbientPatternSettings() {
                       value={LedMode.BLINK}
                       control={<Radio />}
                       label="Color Blink"
+                      checked={led.ledMode === LedMode.BLINK}
+                      onClick={() => {
+                        led.setLedMode(LedMode.BLINK);
+                      }}
+                      disabled={led.status}
                     />
                     <FormControlLabel
                       value={LedMode.PULSE}
                       control={<Radio />}
                       label="Color Pulse"
+                      checked={led.ledMode === LedMode.PULSE}
+                      onClick={() => {
+                        led.setLedMode(LedMode.PULSE);
+                      }}
+                      disabled={led.status}
                     />
                     <FormControlLabel
                       value={LedMode.STATIC}
                       control={<Radio />}
                       label="Static Color"
+                      checked={led.ledMode === LedMode.STATIC}
+                      onClick={() => {
+                        led.setLedMode(LedMode.STATIC);
+                      }}
+                      disabled={led.status}
                     />
                   </RadioGroup>
                 </Stack>
