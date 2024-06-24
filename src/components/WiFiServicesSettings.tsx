@@ -37,6 +37,13 @@ export default function WiFiServicesSettings() {
             </Grid>
             <Grid item textAlign="center">
               <TextField
+                label="Subnet Mask"
+                variant="outlined"
+                value="255.255.255.0"
+              />
+            </Grid>
+            <Grid item textAlign="center">
+              <TextField
                 label="Web Version"
                 variant="outlined"
                 value="0.3.74"

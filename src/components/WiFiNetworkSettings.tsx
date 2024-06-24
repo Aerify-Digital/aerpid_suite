@@ -30,7 +30,7 @@ export default function WiFiNetworkSettings() {
               <Select
                 fullWidth
                 defaultValue="none"
-                value="__scan_first__"
+                value="none"
                 onChange={() => {}}
                 dir="down"
               >
@@ -49,7 +49,12 @@ export default function WiFiNetworkSettings() {
               </Button>
             </Grid>
             <Grid item textAlign="center">
-              <TextField label="Password" variant="outlined" disabled />
+              <TextField
+                label="Password"
+                variant="outlined"
+                disabled
+                fullWidth
+              />
             </Grid>
             <Grid item textAlign="center">
               <FormControlLabel
@@ -65,6 +70,7 @@ export default function WiFiNetworkSettings() {
             <Grid item container direction="row" spacing={2}>
               <Grid item xs={6} textAlign="center">
                 <Button
+                  fullWidth
                   variant="contained"
                   color="success"
                   sx={{ fontWeight: 'bold' }}
@@ -72,11 +78,12 @@ export default function WiFiNetworkSettings() {
                     /* Implement Reboot AerPID logic */
                   }}
                 >
-                  Join Network
+                  Connect
                 </Button>
               </Grid>
               <Grid item xs={6} textAlign="center">
                 <Button
+                  fullWidth
                   variant="contained"
                   color="error"
                   sx={{ fontWeight: 'bold' }}
@@ -84,7 +91,7 @@ export default function WiFiNetworkSettings() {
                     /* Implement Factory Reset logic */
                   }}
                 >
-                  Delete Network
+                  Reset
                 </Button>
               </Grid>
             </Grid>

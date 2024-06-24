@@ -17,7 +17,7 @@ export default function UsbCommunicationSettings() {
         <Paper sx={{ pt: 2, pb: 2, pl: 2, pr: 2 }}>
           <Grid item sx={{ pb: 2 }}>
             <Typography variant="overline" textAlign="center">
-              USB Communications
+              USB Communication
             </Typography>
           </Grid>
           <Grid item container direction="column" spacing={2}>
