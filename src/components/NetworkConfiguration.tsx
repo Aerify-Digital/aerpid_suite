@@ -1,23 +1,13 @@
-import { Grid, Paper, Typography } from '@mui/material';
+import { Grid } from '@mui/material';
+import WiFiNetworkSettings from './WiFiNetworkSettings';
+import WiFiServicesSettings from './WiFiServicesSettings';
 
 export default function NetworkConfiguration() {
   return (
     <Grid container direction="column" item>
       <Grid item alignContent="center" container>
-        <Grid item sx={{ mt: 3 }}>
-          <Paper>
-            <Typography variant="h6" align="center">
-              Wifi Networks
-            </Typography>
-          </Paper>
-        </Grid>
-        <Grid item sx={{ mt: 3 }}>
-          <Paper>
-            <Typography variant="h6" align="center">
-              Wifi Services
-            </Typography>
-          </Paper>
-        </Grid>
+        <WiFiNetworkSettings />
+        <WiFiServicesSettings />
       </Grid>
     </Grid>
   );
