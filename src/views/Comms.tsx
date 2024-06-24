@@ -24,14 +24,10 @@ export default function Comms() {
         <Grid item container direction="row">
           <Grid container direction="column" item>
             <Grid item alignContent="center">
-              <Grid item sx={{ mt: 3, ml: 2, mr: 2 }}>
-                <NetworkConfiguration />
-              </Grid>
+              <NetworkConfiguration />
             </Grid>
             <Grid item alignContent="center">
-              <Grid item sx={{ mt: 3, ml: 2, mr: 2 }}>
-                <CommsConfiguration />
-              </Grid>
+              <CommsConfiguration />
             </Grid>
           </Grid>
         </Grid>

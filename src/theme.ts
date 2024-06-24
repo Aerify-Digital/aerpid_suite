@@ -41,6 +41,24 @@ const theme = (mode: 'dark' | 'light') =>
       }
     },
     components: {
+      MuiCssBaseline: {
+        styleOverrides: `
+          ::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
+          }
+          ::-webkit-scrollbar-track {
+            background: transparent;
+          }
+          ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+          }
+          ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+          }
+        `
+      },
       MuiButton: {
         styleOverrides: {
           containedPrimary: {

@@ -15,6 +15,7 @@ import {
 import { useState } from 'react';
 
 export default function WiFiNetworkSettings() {
+  const [ssid, setSsid] = useState(undefined as string | undefined);
   const [scanning, setScanning] = useState(false);
   const [nearbyNetworks, setNearbyNetworks] = useState([]);
   const [showPassword, setShowPassword] = useState(false);
@@ -68,6 +69,7 @@ export default function WiFiNetworkSettings() {
                 variant="outlined"
                 type={showPassword ? 'text' : 'password'}
                 fullWidth
+                disabled={scanning || nearbyNetworks.length === 0 || !ssid}
               />
             </Grid>
             <Grid item textAlign="center">
