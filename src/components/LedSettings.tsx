@@ -49,7 +49,7 @@ export default function LedSettings() {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item direction="column" textAlign="center">
+          <Grid item textAlign="center">
             <FormControlLabel
               control={<Switch color="primary" onChange={() => {}} />}
               label="Status"

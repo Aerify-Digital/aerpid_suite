@@ -18,7 +18,7 @@ export default function Lights() {
   return connection.connected ? (
     <Box sx={{ maxWidth: 1200, width: '100%', margin: '0 auto' }}>
       <Grid item container>
-        <Grid item sx={{ pt: 1, pb: 1, pl: 2 }} direction="row" xs={12}>
+        <Grid item sx={{ p: 2 }} direction="row" xs={12}>
           <Typography variant="h5">Light Settings</Typography>
         </Grid>
 

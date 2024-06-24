@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useConnectionContext } from '../contexts/ConnectionContext';
 import { useNavigate } from 'react-router-dom';
-import { Grid, Typography } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 import DeviceModel from '../enum/DeviceModel';
 
 export default function Home() {
@@ -30,20 +30,22 @@ export default function Home() {
     }
   }, [connection.connected, connection.initialized]);
   return connection.connected ? (
-    <Grid container direction="column" item>
-      <Grid item alignContent="center">
-        <Grid item sx={{ mt: 3, ml: 2 }}>
-          <Typography variant="h5" align="left">
-            {hostName &&
-            modelName &&
-            hostName.length > 0 &&
-            modelName.length > 0
-              ? `${hostName} (${modelName})`
-              : ''}
-          </Typography>
+    <Box sx={{ maxWidth: 1200, width: '100%', margin: '0 auto' }}>
+      <Grid container direction="column" item>
+        <Grid item alignContent="center">
+          <Grid item sx={{ mt: 3, ml: 2 }}>
+            <Typography variant="h5" align="left">
+              {hostName &&
+              modelName &&
+              hostName.length > 0 &&
+              modelName.length > 0
+                ? `${hostName} (${modelName})`
+                : ''}
+            </Typography>
+          </Grid>
         </Grid>
       </Grid>
-    </Grid>
+    </Box>
   ) : (
     <></>
   );

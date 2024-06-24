@@ -37,7 +37,9 @@ export function ConnectionProvider({ children }: { children: ReactNode }) {
   const MAX_LINES = 10000;
   const [serialConsole, setSerialConsole] = useState<string[]>([]);
   const serialCallback = useCallback((data: Buffer) => {
-    const text = String.fromCharCode(...data);
+    const textDecoder = new TextDecoder('utf-8');
+    const decodedText = textDecoder.decode(new Uint8Array(data));
+    const text = decodedText.replace(/[\x00-\x1F\x7F]/g, ''); //eslint-disable-line no-control-regex
     setSerialConsole((lines) => {
       const newLines = [...lines, ...text.split(/\r?\n/)];
       if (newLines.length > MAX_LINES) {

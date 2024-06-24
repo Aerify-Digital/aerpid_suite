@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useConnectionContext } from '../contexts/ConnectionContext';
 import { useEffect } from 'react';
-import { Grid, Typography } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 
 export default function Graphs() {
   const connection = useConnectionContext();
@@ -12,15 +12,17 @@ export default function Graphs() {
     }
   }, [connection.connected]);
   return connection.connected ? (
-    <Grid container direction="column" item>
-      <Grid item alignContent="center">
-        <Grid item sx={{ mt: 3, ml: 2 }}>
-          <Typography variant="h5" align="left">
-            Graphs
-          </Typography>
+    <Box sx={{ maxWidth: 1200, width: '100%', margin: '0 auto' }}>
+      <Grid container direction="column" item>
+        <Grid item alignContent="center">
+          <Grid item sx={{ mt: 3, ml: 2 }}>
+            <Typography variant="h5" align="left">
+              Graphs
+            </Typography>
+          </Grid>
         </Grid>
       </Grid>
-    </Grid>
+    </Box>
   ) : (
     <></>
   );

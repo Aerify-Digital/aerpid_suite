@@ -1,22 +1,21 @@
-import { Paper } from '@mui/material';
+import { FormControlLabel, Grid, Paper, Switch } from '@mui/material';
 import { styled } from '@mui/system';
 import { useEffect, useRef, useState } from 'react';
 
 const StyledPaper = styled(Paper)({
   fontFamily: 'monospace',
-  whiteSpace: 'pre',
+  wordBreak: 'break-all',
+  whiteSpace: 'pre-wrap',
+  overflowWrap: 'break-word',
   margin: 'auto',
-  paddingLeft: '5px',
-  marginTop: '10px',
   overflow: 'auto',
-  height: 'calc(80vh)',
-  width: 'calc(98vw)',
+  maxHeight: '75vh',
   '&::-webkit-scrollbar': {
     width: '7px',
     height: '7px'
   },
   '&::-webkit-scrollbar-track': {
-    background: 'transparent' // Change this to the color of the container if you don't want it to be transparent
+    background: 'transparent'
   },
   '&::-webkit-scrollbar-thumb': {
     background: '#888',
@@ -40,20 +39,29 @@ export default function Console({ output }: { output: string }) {
   }, [output, autoScroll]);
 
   return (
-    <>
-      <div
-        style={{ marginRight: '26px', marginTop: '2px', textAlign: 'right' }}
-      >
-        <input
-          type="checkbox"
-          checked={autoScroll}
-          onChange={() => setAutoScroll(!autoScroll)}
+    <Grid item container direction="row">
+      <Grid item xs={12} textAlign="left">
+        <FormControlLabel
+          control={
+            <Switch
+              color="primary"
+              checked={autoScroll}
+              onChange={(
+                event: React.ChangeEvent<HTMLInputElement>,
+                checked: boolean
+              ) => {
+                setAutoScroll(checked);
+              }}
+            />
+          }
+          label="Auto Scroll"
         />
-        <label>Auto Scroll</label>
-      </div>
-      <StyledPaper ref={terminalRef}>
-        <div style={{ marginBottom: '3px', marginTop: '3px' }}>{output}</div>
-      </StyledPaper>
-    </>
+      </Grid>
+      <Grid item xs={12}>
+        <StyledPaper ref={terminalRef}>
+          <div style={{ marginBottom: '3px', marginTop: '3px' }}>{output}</div>
+        </StyledPaper>
+      </Grid>
+    </Grid>
   );
 }
