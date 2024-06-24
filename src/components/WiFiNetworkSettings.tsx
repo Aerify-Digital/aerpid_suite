@@ -16,6 +16,14 @@ import { useState } from 'react';
 
 export default function WiFiNetworkSettings() {
   const [nearbyNetworks, setNearbyNetworks] = useState([]);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleCheckboxChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    checked: boolean
+  ) => {
+    setShowPassword(checked);
+  };
   return (
     <Grid item xs={6}>
       <Box sx={{ m: 1 }}>
@@ -52,13 +60,18 @@ export default function WiFiNetworkSettings() {
               <TextField
                 label="Password"
                 variant="outlined"
-                disabled
+                type={showPassword ? 'text' : 'password'}
                 fullWidth
               />
             </Grid>
             <Grid item textAlign="center">
               <FormControlLabel
-                control={<Checkbox onChange={() => {}} />}
+                control={
+                  <Checkbox
+                    checked={showPassword}
+                    onChange={handleCheckboxChange}
+                  />
+                }
                 label="Show Password"
               />
             </Grid>
