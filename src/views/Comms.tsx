@@ -16,7 +16,7 @@ export default function Comms() {
   return connection.connected ? (
     <Box sx={{ maxWidth: 1200, width: '100%', margin: '0 auto' }}>
       <Grid container direction="column" item>
-        <Grid item direction="row">
+        <Grid item container direction="row">
           <Grid item sx={{ mt: 3, ml: 2 }}>
             <Typography variant="h5">Communications Settings</Typography>
           </Grid>
@@ -24,18 +24,12 @@ export default function Comms() {
         <Grid item container direction="row">
           <Grid container direction="column" item>
             <Grid item alignContent="center">
-              <Grid item sx={{ mt: 3, ml: 2 }}>
-                <Typography variant="h5" align="left">
-                  Network Configuration
-                </Typography>
+              <Grid item sx={{ mt: 3, ml: 2, mr: 2 }}>
                 <NetworkConfiguration />
               </Grid>
             </Grid>
             <Grid item alignContent="center">
-              <Grid item sx={{ mt: 3, ml: 2 }}>
-                <Typography variant="h5" align="left">
-                  USB Configuration
-                </Typography>
+              <Grid item sx={{ mt: 3, ml: 2, mr: 2 }}>
                 <CommsConfiguration />
               </Grid>
             </Grid>

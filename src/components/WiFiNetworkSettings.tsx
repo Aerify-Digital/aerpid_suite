@@ -9,7 +9,8 @@ import {
   TextField,
   MenuItem,
   Select,
-  Button
+  Button,
+  Checkbox
 } from '@mui/material';
 import { useState } from 'react';
 
@@ -20,7 +21,7 @@ export default function WiFiNetworkSettings() {
       <Box sx={{ m: 1 }}>
         <Paper sx={{ pt: 2, pb: 2, pl: 2, pr: 2 }}>
           <Grid item sx={{ pb: 2 }}>
-            <Typography variant="h6" textAlign="center">
+            <Typography variant="overline" textAlign="center">
               WiFi Network
             </Typography>
           </Grid>
@@ -49,6 +50,12 @@ export default function WiFiNetworkSettings() {
             </Grid>
             <Grid item textAlign="center">
               <TextField label="Password" variant="outlined" disabled />
+            </Grid>
+            <Grid item textAlign="center">
+              <FormControlLabel
+                control={<Checkbox onChange={() => {}} />}
+                label="Show Password"
+              />
             </Grid>
             <Grid item textAlign="center">
               <Typography variant="subtitle2">

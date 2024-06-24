@@ -17,7 +17,7 @@ export default function LightingPresetSettings() {
       <Box sx={{ m: 1 }}>
         <Paper sx={{ pt: 2, pb: 2, pl: 2, pr: 2 }}>
           <Grid item sx={{ pb: 2 }}>
-            <Typography variant="h6" textAlign="center">
+            <Typography variant="overline" textAlign="center">
               Lighting Presets
             </Typography>
           </Grid>
