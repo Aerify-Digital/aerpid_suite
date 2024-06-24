@@ -15,8 +15,13 @@ import {
 import { useState } from 'react';
 
 export default function WiFiNetworkSettings() {
+  const [scanning, setScanning] = useState(false);
   const [nearbyNetworks, setNearbyNetworks] = useState([]);
   const [showPassword, setShowPassword] = useState(false);
+
+  const doScan = async () => {
+    // Implement WiFi scan logic
+  };
 
   const handleCheckboxChange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -51,7 +56,8 @@ export default function WiFiNetworkSettings() {
               <Button
                 startIcon={<PermScanWifi />}
                 variant="contained"
-                onClick={() => {}}
+                onClick={doScan}
+                disabled={scanning}
               >
                 Scan
               </Button>
