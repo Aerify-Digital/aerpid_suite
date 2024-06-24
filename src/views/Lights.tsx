@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useConnectionContext } from '../contexts/ConnectionContext';
 import { useEffect } from 'react';
-import { Grid, Typography } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 import LedSettings from '../components/LedSettings';
 import LightingPresetSettings from '../components/LightingPresetSettings';
 import AmbientColorSettings from '../components/AmbientColorSettings';
@@ -16,19 +16,24 @@ export default function Lights() {
     }
   }, [connection.connected]);
   return connection.connected ? (
-    <Grid item container>
-      <Grid item sx={{ pt: 1, pb: 1, pl: 2 }} direction="row">
-        <Typography variant="h5">Light Settings</Typography>
+    <Box sx={{ maxWidth: 1200, width: '100%', margin: '0 auto' }}>
+      <Grid item container>
+        <Grid item sx={{ pt: 1, pb: 1, pl: 2 }} direction="row" xs={12}>
+          <Typography variant="h5">Light Settings</Typography>
+        </Grid>
+
+        <Grid item container>
+          <Grid item container direction="row">
+            <LedSettings />
+            <LightingPresetSettings />
+          </Grid>
+          <Grid item container direction="row">
+            <AmbientColorSettings />
+            <AmbientPatternSettings />
+          </Grid>
+        </Grid>
       </Grid>
-      <Grid item container direction="row">
-        <LedSettings />
-        <LightingPresetSettings />
-      </Grid>
-      <Grid item container direction="row">
-        <AmbientColorSettings />
-        <AmbientPatternSettings />
-      </Grid>
-    </Grid>
+    </Box>
   ) : (
     <></>
   );
