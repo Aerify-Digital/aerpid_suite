@@ -6,6 +6,7 @@ import LedSettings from '../components/LedSettings';
 import LightingPresetSettings from '../components/LightingPresetSettings';
 import AmbientColorSettings from '../components/AmbientColorSettings';
 import AmbientPatternSettings from '../components/AmbientPatternSettings';
+import { LedProvider } from '../contexts/LedContext';
 
 export default function Lights() {
   const connection = useConnectionContext();
@@ -16,24 +17,26 @@ export default function Lights() {
     }
   }, [connection.connected]);
   return connection.connected ? (
-    <Box sx={{ maxWidth: 1200, width: '100%', margin: '0 auto' }}>
-      <Grid item container>
-        <Grid item sx={{ p: 2 }} direction="row" xs={12}>
-          <Typography variant="h5">Light Settings</Typography>
-        </Grid>
-
+    <LedProvider>
+      <Box sx={{ maxWidth: 1200, width: '100%', margin: '0 auto' }}>
         <Grid item container>
-          <Grid item container direction="row">
-            <LedSettings />
-            <LightingPresetSettings />
+          <Grid item sx={{ p: 2 }} direction="row" xs={12}>
+            <Typography variant="h5">Light Settings</Typography>
           </Grid>
-          <Grid item container direction="row">
-            <AmbientColorSettings />
-            <AmbientPatternSettings />
+
+          <Grid item container>
+            <Grid item container direction="row">
+              <LedSettings />
+              <LightingPresetSettings />
+            </Grid>
+            <Grid item container direction="row">
+              <AmbientColorSettings />
+              <AmbientPatternSettings />
+            </Grid>
           </Grid>
         </Grid>
-      </Grid>
-    </Box>
+      </Box>
+    </LedProvider>
   ) : (
     <></>
   );
