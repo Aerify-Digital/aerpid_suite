@@ -1,4 +1,10 @@
-import { ReactNode, createContext, useContext, useState } from 'react';
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState
+} from 'react';
 import LedMode from '../enum/LedMode';
 import RGBColor from '../type/RGBColor';
 

@@ -7,7 +7,9 @@ enum LedMode {
   RAINBOW_PULSE,
   RAINBOW_WAVE,
   SHIFT,
-  STATIC
+  PREPULSE,
+  STATIC,
+  STATUS
 }
 
 export default LedMode;

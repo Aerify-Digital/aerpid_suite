@@ -24,7 +24,7 @@ export default function LightingPresetSettings() {
             </Typography>
           </Grid>
           <Grid item container direction="column" spacing={2}>
-            <Grid item direction="column" textAlign="center">
+            <Grid item textAlign="center">
               <FormControl component="fieldset">
                 <Stack direction="column">
                   <RadioGroup onChange={() => {}}>

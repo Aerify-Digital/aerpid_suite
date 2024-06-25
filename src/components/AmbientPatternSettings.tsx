@@ -25,7 +25,7 @@ export default function AmbientPatternSettings() {
           </Grid>
 
           <Grid item container direction="column" spacing={2}>
-            <Grid item direction="column" textAlign="center">
+            <Grid item textAlign="center">
               <FormControl component="fieldset">
                 <Stack direction="column">
                   <RadioGroup onChange={() => {}}>
@@ -43,9 +43,9 @@ export default function AmbientPatternSettings() {
                       value={LedMode.PULSE}
                       control={<Radio />}
                       label="Color Pulse"
-                      checked={led.ledMode === LedMode.PULSE}
+                      checked={led.ledMode === LedMode.PREPULSE}
                       onClick={() => {
-                        led.setLedMode(LedMode.PULSE);
+                        led.setLedMode(LedMode.PREPULSE);
                       }}
                       disabled={led.status}
                     />

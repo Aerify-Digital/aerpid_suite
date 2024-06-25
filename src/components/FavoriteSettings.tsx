@@ -11,13 +11,7 @@ export default function FavoriteSettings() {
               Favorites
             </Typography>
           </Grid>
-          <Grid
-            item
-            container
-            direction="column"
-            spacing={2}
-            justifyContent="center"
-          >
+          <Grid item container spacing={2} justifyContent="center">
             <Grid item textAlign="center" justifyContent="center">
               <Favorite favNum={1} />
             </Grid>

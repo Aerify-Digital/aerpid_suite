@@ -19,6 +19,25 @@ export default function Lights() {
   return connection.connected ? (
     <LedProvider>
       <Box sx={{ maxWidth: 1200, width: '100%', margin: '0 auto' }}>
+        <Grid container direction="column" item>
+          <Grid item>
+            <Grid item sx={{ mt: 3, ml: 2 }}>
+              <Typography variant="h5">Light Settings</Typography>
+            </Grid>
+          </Grid>
+          <Grid item container spacing="2">
+            <Grid item container direction="row">
+              <LedSettings />
+              <AmbientPatternSettings />
+            </Grid>
+            <Grid item container direction="row">
+              <LightingPresetSettings />
+              <AmbientColorSettings />
+            </Grid>
+          </Grid>
+        </Grid>
+      </Box>
+      {/*<Box sx={{ maxWidth: 1200, width: '100%', margin: '0 auto' }}>
         <Grid item container>
           <Grid item sx={{ p: 2 }} direction="row" xs={12}>
             <Typography variant="h5">Light Settings</Typography>
@@ -35,7 +54,7 @@ export default function Lights() {
             </Grid>
           </Grid>
         </Grid>
-      </Box>
+      </Box>*/}
     </LedProvider>
   ) : (
     <></>

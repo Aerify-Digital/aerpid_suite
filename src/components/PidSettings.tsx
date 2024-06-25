@@ -12,7 +12,7 @@ export default function PidSettings() {
     //TODO: PID stuff
   };
   return (
-    <Grid item spacing={2}>
+    <Grid item>
       <Box sx={{ m: 1 }}>
         <Paper sx={{ pt: 2, pb: 2, pl: 2, pr: 2 }}>
           <Grid item sx={{ pb: 2 }}>

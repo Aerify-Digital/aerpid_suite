@@ -24,7 +24,7 @@ export default function DeviceSettings() {
               Device Settings
             </Typography>
           </Grid>
-          <Grid item spacing={2} justifyContent="center">
+          <Grid item justifyContent="center">
             <Paper elevation={3} sx={{ m: 1, p: 2 }}>
               <Grid item container spacing={2} justifyContent="center">
                 <Grid item textAlign="center">
@@ -86,7 +86,7 @@ export default function DeviceSettings() {
                 </FormControl>
               </Paper>
             </Grid>
-            <Grid item xs={12} spacing={2} justifyContent="center">
+            <Grid item xs={12} justifyContent="center">
               <Paper elevation={3} sx={{ m: 1, p: 2 }}>
                 <Grid container spacing={2} justifyContent="center">
                   <Grid item xs={12} textAlign="center">

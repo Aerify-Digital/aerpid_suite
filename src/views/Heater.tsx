@@ -18,16 +18,20 @@ export default function Heater() {
 
   return connection.connected ? (
     <Box sx={{ maxWidth: 1200, width: '100%', margin: '0 auto' }}>
-      <Grid item container>
-        <Grid item sx={{ pt: 1, pb: 1, pl: 2 }} direction="row">
-          <Typography variant="h5">Heater Settings</Typography>
+      <Grid container direction="column" item>
+        <Grid item>
+          <Grid item sx={{ mt: 3, ml: 2 }}>
+            <Typography variant="h5">Heater Settings</Typography>
+          </Grid>
         </Grid>
-        <Grid item container direction="row">
-          <PidSettings />
-        </Grid>
-        <Grid item container direction="row">
-          <BumpSettings />
-          <AutoOffSettings />
+        <Grid item container spacing="2">
+          <Grid item container direction="row">
+            <PidSettings />
+          </Grid>
+          <Grid item container direction="row">
+            <BumpSettings />
+            <AutoOffSettings />
+          </Grid>
         </Grid>
       </Grid>
     </Box>
