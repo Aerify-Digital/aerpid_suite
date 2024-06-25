@@ -35,6 +35,14 @@ export default class Server {
     });
   }
 
+  get(key: string) {
+    return (this.store as Record<string, any>).get(key);
+  }
+
+  set(key: string, value: any) {
+    return (this.store as Record<string, any>).set(key, value);
+  }
+
   getVersion() {
     return this.version;
   }
@@ -59,11 +67,11 @@ export default class Server {
 
   setup() {
     ipcMain.handle('getStoreValue', (event, key) => {
-      return (this.store as Record<string, any>).get(key);
+      return this.get(key);
     });
 
     ipcMain.handle('setStoreValue', (event, key, value) => {
-      return (this.store as Record<string, any>).set(key, value);
+      return this.set(key, value);
     });
 
     ipcMain.handle('connect-serial-port', async (event: IpcMainInvokeEvent) => {

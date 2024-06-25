@@ -369,9 +369,11 @@ const createWindow = (): void => {
           console.error('Failed to check for updates:', error);
         }
       };
-      checkForUpdates().then(() => {
-        event.sender.send('update-menu', true);
-      });
+      if (server && server.get('checkFirmwareOnConnect') === true) {
+        checkForUpdates().then(() => {
+          event.sender.send('update-menu', true);
+        });
+      }
     }
   );
 

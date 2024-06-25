@@ -69,6 +69,11 @@ export default function DeviceSettings() {
                     value="1"
                     onChange={() => {}}
                   >
+                    <FormControlLabel
+                      value="0.1"
+                      control={<Radio />}
+                      label="0.1"
+                    />
                     <FormControlLabel value="1" control={<Radio />} label="1" />
                     <FormControlLabel value="2" control={<Radio />} label="2" />
                     <FormControlLabel value="5" control={<Radio />} label="5" />
@@ -76,11 +81,6 @@ export default function DeviceSettings() {
                       value="10"
                       control={<Radio />}
                       label="10"
-                    />
-                    <FormControlLabel
-                      value="20"
-                      control={<Radio />}
-                      label="20"
                     />
                   </RadioGroup>
                 </FormControl>

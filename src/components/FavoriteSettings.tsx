@@ -1,4 +1,4 @@
-import { Box, Grid, Paper, TextField, Typography } from '@mui/material';
+import { Box, Grid, Paper, Typography } from '@mui/material';
 import Favorite from './Favorite';
 
 export default function FavoriteSettings() {
