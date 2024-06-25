@@ -24,7 +24,7 @@ export default function FavoriteSettings() {
             <Grid item textAlign="center" justifyContent="center">
               <Favorite favNum={4} />
             </Grid>
-            <Grid item>
+            <Grid item textAlign="center">
               <Typography variant="subtitle2">
                 These settings will be applied automatically once you have
                 finished changing them.

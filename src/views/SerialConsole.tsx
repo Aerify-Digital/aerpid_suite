@@ -21,7 +21,7 @@ export default function SerialConsole() {
             <Typography variant="h5">Serial Console</Typography>
           </Grid>
         </Grid>
-        <Grid item container direction="row" spacing="2">
+        <Grid item xs={12}>
           <Box sx={{ p: 2 }}>
             <Console output={connection.serialConsole.join('\n')} />
           </Box>

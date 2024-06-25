@@ -24,7 +24,10 @@ export default function LightingPresetSettings() {
           <Grid item container spacing={2} justifyContent="center">
             <Grid item justifyContent="center">
               <Paper elevation={3} sx={{ mr: 4, ml: 4, mt: 2, p: 2 }}>
-                <Grid container item justifyContent="center" spacing={2}>
+                <Grid container item spacing={2}>
+                  <Grid item>
+                    <Typography variant="overline">Preset</Typography>
+                  </Grid>
                   <Grid item xs={12} textAlign="center">
                     <FormControl component="fieldset">
                       <Stack direction="column">

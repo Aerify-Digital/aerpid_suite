@@ -127,7 +127,7 @@ export default function DeviceSettings() {
                 </Grid>
               </Paper>
             </Grid>
-            <Grid item>
+            <Grid item textAlign="center">
               <Typography variant="subtitle2">
                 Make sure to keep up with our latest updates and news on{' '}
                 {
