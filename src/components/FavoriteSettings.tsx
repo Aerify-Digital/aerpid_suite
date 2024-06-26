@@ -1,4 +1,4 @@
-import { Box, Grid, Paper, Typography } from '@mui/material';
+import { Box, Grid, Paper, Typography, Divider } from '@mui/material';
 import Favorite from './Favorite';
 
 export default function FavoriteSettings() {
@@ -7,10 +7,15 @@ export default function FavoriteSettings() {
       <Box sx={{ m: 1 }}>
         <Paper sx={{ pt: 2, pb: 2, pl: 2, pr: 2 }}>
           <Grid item sx={{ pb: 2 }}>
-            <Typography variant="overline" textAlign="center">
+            <Typography
+              variant="h6"
+              align="center"
+              className="!font-medium !text-xl !bg-[#25262f35] pt-2 pb-2"
+            >
               Favorites
             </Typography>
           </Grid>
+          <Divider className="!mb-4" />
           <Grid item container spacing={2} justifyContent="center">
             <Grid item textAlign="center" justifyContent="center">
               <Favorite favNum={1} />

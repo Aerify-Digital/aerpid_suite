@@ -10,7 +10,8 @@ import {
   RadioGroup,
   Switch,
   TextField,
-  Typography
+  Typography,
+  Divider
 } from '@mui/material';
 import ExternalLink from './ExternalLink';
 
@@ -20,13 +21,18 @@ export default function DeviceSettings() {
       <Box sx={{ m: 1 }}>
         <Paper sx={{ pt: 2, pb: 2, pl: 2, pr: 2 }}>
           <Grid item sx={{ pb: 2 }}>
-            <Typography variant="overline" textAlign="center">
+            <Typography
+              variant="h6"
+              align="center"
+              className="!font-medium !text-xl !bg-[#25262f35] pt-2 pb-2"
+            >
               Device Settings
             </Typography>
           </Grid>
+          <Divider className="!mb-4" />
           <Grid item justifyContent="center">
-            <Paper elevation={3} sx={{ m: 1, p: 2 }}>
-              <Grid item container spacing={2} justifyContent="center">
+            <Grid sx={{ m: 1, pt: 4, pb: 4 }}>
+              <Grid item container spacing={3} justifyContent="center">
                 <Grid item textAlign="center">
                   <TextField
                     label="Host Name"
@@ -56,10 +62,12 @@ export default function DeviceSettings() {
                   />
                 </Grid>
               </Grid>
-            </Paper>
+            </Grid>
 
-            <Grid item textAlign="center">
-              <Paper elevation={3} sx={{ m: 1, p: 1 }}>
+            <Divider className="!mb-4" />
+
+            <Grid item textAlign="center" className=" !mt-4">
+              <Paper elevation={3} sx={{ m: 1, pt: 4, pb: 4 }}>
                 <FormControl component="fieldset">
                   <FormLabel component="legend">Adjustment Amount</FormLabel>
                   <RadioGroup
@@ -86,8 +94,8 @@ export default function DeviceSettings() {
                 </FormControl>
               </Paper>
             </Grid>
-            <Grid item xs={12} justifyContent="center">
-              <Paper elevation={3} sx={{ m: 1, p: 2 }}>
+            <Grid item xs={12} justifyContent="center" className=" !mt-4">
+              <Paper elevation={3} sx={{ m: 1, pt: 4, pb: 4 }}>
                 <Grid container spacing={2} justifyContent="center">
                   <Grid item xs={12} textAlign="center">
                     <Typography variant="body1">Advanced Options</Typography>
@@ -127,7 +135,7 @@ export default function DeviceSettings() {
                 </Grid>
               </Paper>
             </Grid>
-            <Grid item textAlign="center">
+            <Grid item textAlign="center" className="!mt-4">
               <Typography variant="subtitle2">
                 Make sure to keep up with our latest updates and news on{' '}
                 {
