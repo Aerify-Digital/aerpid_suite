@@ -1,4 +1,12 @@
-import { Box, Button, Grid, Paper, TextField, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  Grid,
+  Paper,
+  TextField,
+  Typography,
+  Divider
+} from '@mui/material';
 import { ChangeEvent, useState } from 'react';
 
 export default function PidSettings() {
@@ -16,10 +24,15 @@ export default function PidSettings() {
       <Box sx={{ m: 1 }}>
         <Paper sx={{ pt: 2, pb: 2, pl: 2, pr: 2 }}>
           <Grid item sx={{ pb: 2 }}>
-            <Typography variant="overline" textAlign="center">
+            <Typography
+              variant="h6"
+              align="center"
+              className="!font-medium !text-xl !bg-[#25262f35] pt-2 pb-2"
+            >
               PID
             </Typography>
           </Grid>
+          <Divider className="!mb-4" />
           <Grid item textAlign="center">
             <TextField
               label="P (Proportional)"
@@ -29,7 +42,7 @@ export default function PidSettings() {
               onChange={handleInputChange}
             />
           </Grid>
-          <Grid item textAlign="center">
+          <Grid item textAlign="center" className="!mt-4">
             <TextField
               label="I (Integral)"
               variant="outlined"
@@ -38,7 +51,7 @@ export default function PidSettings() {
               onChange={handleInputChange}
             />
           </Grid>
-          <Grid item textAlign="center">
+          <Grid item textAlign="center" className="!mt-4">
             <TextField
               label="D (Derivative)"
               variant="outlined"
