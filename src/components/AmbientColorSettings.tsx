@@ -1,13 +1,18 @@
-import { Grid, Box, Paper, Typography, Slider } from '@mui/material';
+import { Grid, Box, Paper, Typography, Slider, Divider } from '@mui/material';
 
 export default function AmbientColorSettings() {
   return (
     <Grid item xs={6}>
       <Box sx={{ m: 1 }}>
-        <Paper sx={{ pt: 2, pb: 2, pl: 2, pr: 2 }}>
-          <Grid item>
-            <Typography variant="overline">Ambient Color</Typography>
-          </Grid>
+        <Paper sx={{ pt: 2, pb: 3, pl: 2, pr: 2 }}>
+          <Typography
+            variant="h6"
+            align="center"
+            className="!font-medium !text-xl !bg-[#25262f35] pt-2 pb-2"
+          >
+            Ambient Color
+          </Typography>
+          <Divider className="!mb-4 !mt-4" />
           <Grid item container spacing={2} justifyContent="center">
             <Grid item justifyContent="center">
               <Paper elevation={3} sx={{ mr: 4, ml: 4, mt: 2, p: 2 }}>

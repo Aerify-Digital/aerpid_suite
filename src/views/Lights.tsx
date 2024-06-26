@@ -21,7 +21,7 @@ export default function Lights() {
       <Box sx={{ maxWidth: 1200, width: '100%', margin: '0 auto' }}>
         <Grid container direction="column" item>
           <Grid item>
-            <Grid item sx={{ mt: 3, ml: 2 }}>
+            <Grid item sx={{ mt: 3, ml: 1 }}>
               <Typography variant="h5">Light Settings</Typography>
             </Grid>
           </Grid>

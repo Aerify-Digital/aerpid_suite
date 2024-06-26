@@ -7,7 +7,8 @@ import {
   FormControlLabel,
   Radio,
   RadioGroup,
-  Stack
+  Stack,
+  Divider
 } from '@mui/material';
 import LedMode from '../enum/LedMode';
 import { useLedContext } from '../contexts/LedContext';
@@ -17,10 +18,17 @@ export default function LightingPresetSettings() {
   return (
     <Grid item xs={6}>
       <Box sx={{ m: 1 }}>
-        <Paper sx={{ pt: 2, pb: 2, pl: 2, pr: 2 }}>
+        <Paper sx={{ pt: 2, pb: 3, pl: 2, pr: 2 }}>
           <Grid item sx={{ pb: 2 }}>
-            <Typography variant="overline">Lighting Presets</Typography>
+            <Typography
+              variant="h6"
+              align="center"
+              className="!font-medium !text-xl !bg-[#25262f35] pt-2 pb-2"
+            >
+              Wifi Services
+            </Typography>
           </Grid>
+          <Divider className="!mb-4" />
           <Grid item container spacing={2} justifyContent="center">
             <Grid item justifyContent="center">
               <Paper elevation={3} sx={{ mr: 4, ml: 4, mt: 2, p: 2 }}>

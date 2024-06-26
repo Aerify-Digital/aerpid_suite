@@ -5,7 +5,8 @@ import {
   Grid,
   Paper,
   Switch,
-  Typography
+  Typography,
+  Divider
 } from '@mui/material';
 import { useLedContext } from '../contexts/LedContext';
 
@@ -15,49 +16,52 @@ export default function LedSettings() {
   return (
     <Grid item xs={6}>
       <Box sx={{ m: 1 }}>
-        <Paper sx={{ pt: 2, pb: 2, pl: 2, pr: 2 }}>
+        <Paper sx={{ pt: 2, pb: 3, pl: 2, pr: 2 }}>
           <Grid item sx={{ pb: 2 }}>
-            <Typography variant="overline">LED Settings</Typography>
+            <Typography
+              variant="h6"
+              align="center"
+              className="!font-medium !text-xl !bg-[#25262f35] pt-2 pb-2"
+            >
+              Wifi Services
+            </Typography>
           </Grid>
+          <Divider className="!mb-4" />
           <Grid item container spacing={2} justifyContent="center">
             <Grid item justifyContent="center">
               <Paper elevation={3} sx={{ mr: 4, ml: 4, mt: 2, p: 2 }}>
                 <Grid container item justifyContent="center" spacing={2}>
-                  <Paper elevation={6} sx={{ m: 1, p: 2 }}>
-                    <Grid item container xs={12} textAlign="center">
-                      <Grid item textAlign="center">
-                        <Typography variant="overline">
-                          Main Controls
-                        </Typography>
+                  <Grid item container xs={12} textAlign="center">
+                    <Grid item textAlign="center" className="!mb-4">
+                      <Typography variant="overline">Main Controls</Typography>
+                    </Grid>
+                    <Grid item container direction="row" spacing={2}>
+                      <Grid item xs={6} textAlign="center">
+                        <Button
+                          variant="contained"
+                          color={led.enabled ? 'error' : 'success'}
+                          sx={{ fontWeight: 'bold' }}
+                          onClick={() => {
+                            //TODO: Implement Enable/Disable logic
+                          }}
+                        >
+                          {led.enabled ? 'Disable' : 'Enable'} LEDs
+                        </Button>
                       </Grid>
-                      <Grid item container direction="row" spacing={2}>
-                        <Grid item xs={6} textAlign="center">
-                          <Button
-                            variant="contained"
-                            color={led.enabled ? 'error' : 'success'}
-                            sx={{ fontWeight: 'bold' }}
-                            onClick={() => {
-                              //TODO: Implement Enable/Disable logic
-                            }}
-                          >
-                            {led.enabled ? 'Disable' : 'Enable'} LEDs
-                          </Button>
-                        </Grid>
-                        <Grid item xs={6} textAlign="center">
-                          <Button
-                            variant="contained"
-                            color="primary"
-                            sx={{ fontWeight: 'bold' }}
-                            onClick={() => {
-                              //TODO: Implement Reset logic
-                            }}
-                          >
-                            Reset LEDs
-                          </Button>
-                        </Grid>
+                      <Grid item xs={6} textAlign="center">
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          sx={{ fontWeight: 'bold' }}
+                          onClick={() => {
+                            //TODO: Implement Reset logic
+                          }}
+                        >
+                          Reset LEDs
+                        </Button>
                       </Grid>
                     </Grid>
-                  </Paper>
+                  </Grid>
                   <Grid item textAlign="center">
                     <FormControlLabel
                       control={
