@@ -23,7 +23,7 @@ export default function LedSettings() {
               align="center"
               className="!font-medium !text-xl !bg-[#25262f35] pt-2 pb-2"
             >
-              Wifi Services
+              LED Settings
             </Typography>
           </Grid>
           <Divider className="!mb-4" />
