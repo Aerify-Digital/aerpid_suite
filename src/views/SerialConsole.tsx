@@ -22,7 +22,7 @@ export default function SerialConsole() {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <Box sx={{ p: 2 }}>
+          <Box>
             <Console output={connection.serialConsole.join('\n')} />
           </Box>
         </Grid>

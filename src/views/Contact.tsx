@@ -1,4 +1,4 @@
-import { Box, Grid, Link, Paper, Typography } from '@mui/material';
+import { Box, Grid, Link, Paper, Typography, Divider } from '@mui/material';
 import ExternalLink from '../components/ExternalLink';
 
 export default function Contact() {
@@ -12,11 +12,16 @@ export default function Contact() {
         </Grid>
         <Grid item container spacing="2">
           <Grid item xs={12}>
-            <Box sx={{ m: 1 }}>
+            <Box sx={{ m: 2 }}>
               <Paper sx={{ pt: 2, pb: 2, pl: 2, pr: 2 }}>
-                <Typography variant="h6" align="center">
+                <Typography
+                  variant="h6"
+                  align="center"
+                  className="!font-medium !text-xl !bg-[#25262f35] pt-2 pb-2"
+                >
                   Aerify Digital
                 </Typography>
+                <Divider className="!mb-4 !mt-4" />
                 <Grid
                   container
                   direction="column"
@@ -50,11 +55,16 @@ export default function Contact() {
             </Box>
           </Grid>
           <Grid item xs={12}>
-            <Box sx={{ m: 1 }}>
+            <Box sx={{ m: 2 }}>
               <Paper sx={{ pt: 2, pb: 2, pl: 2, pr: 2 }}>
-                <Typography variant="h6" align="center">
+                <Typography
+                  variant="h6"
+                  align="center"
+                  className="!font-medium !text-xl !bg-[#25262f35] pt-2 pb-2"
+                >
                   Support & Sales
                 </Typography>
+                <Divider className="!mb-4 !mt-4" />
                 <Grid
                   container
                   direction="column"

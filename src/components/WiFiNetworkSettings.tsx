@@ -10,7 +10,8 @@ import {
   MenuItem,
   Select,
   Button,
-  Checkbox
+  Checkbox,
+  Divider
 } from '@mui/material';
 import { useState } from 'react';
 
@@ -33,12 +34,17 @@ export default function WiFiNetworkSettings() {
   return (
     <Grid item xs={6}>
       <Box sx={{ m: 1 }}>
-        <Paper sx={{ pt: 2, pb: 2, pl: 2, pr: 2 }}>
+        <Paper sx={{ pt: 2, pb: 3, pl: 2, pr: 2 }} className="">
           <Grid item sx={{ pb: 2 }}>
-            <Typography variant="overline" textAlign="center">
-              WiFi Network
+            <Typography
+              variant="h6"
+              align="center"
+              className="!font-medium !text-xl !bg-[#25262f35] pt-2 pb-2"
+            >
+              Wifi Network
             </Typography>
           </Grid>
+          <Divider className="!mb-4" />
           <Grid item container direction="column" spacing={2}>
             <Grid item textAlign="center">
               <Select
@@ -75,6 +81,7 @@ export default function WiFiNetworkSettings() {
                 fullWidth
                 disabled={scanning || nearbyNetworks.length === 0 || !ssid}
               />
+              <Divider className="!mt-4" />
             </Grid>
             <Grid item textAlign="center">
               <FormControlLabel

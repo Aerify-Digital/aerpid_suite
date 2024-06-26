@@ -22,7 +22,7 @@ export default function Communications() {
           </Grid>
         </Grid>
         <Grid item container direction="row">
-          <Grid container direction="column" item>
+          <Grid container direction="column" item className="!w-full">
             <Grid item alignContent="center">
               <NetworkConfiguration />
             </Grid>

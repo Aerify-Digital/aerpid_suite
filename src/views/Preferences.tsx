@@ -11,7 +11,8 @@ import {
   RadioGroup,
   Select,
   Switch,
-  Typography
+  Typography,
+  Divider
 } from '@mui/material';
 import { usePreferences } from '../contexts/PreferencesContext';
 
@@ -47,22 +48,26 @@ export default function Preferences() {
             </Typography>
           </Grid>
           <Paper sx={{ m: 2, p: 2 }}>
-            <Grid
-              item
-              container
-              direction="column"
-              spacing={2}
-              sx={{ mt: 2, pl: 2 }}
-            >
+            <Grid item container direction="column" spacing={2} className="p-2">
               <Grid item>
-                <FormControl component="fieldset">
-                  <FormLabel component="legend">Theme</FormLabel>
+                <FormControl component="fieldset" className="!w-full">
+                  <Typography
+                    variant="h6"
+                    align="center"
+                    className="!font-medium !text-xl !bg-[#25262f35] pt-2 pb-2"
+                  >
+                    Theme
+                  </Typography>
+
+                  <Divider className="!mb-2 !mt-4" />
+
                   <RadioGroup
                     row
                     aria-label="theme-mode"
                     name="theme-mode"
                     value={preferences.theme}
                     onChange={handleThemeChange}
+                    className="!flex !items-center"
                   >
                     <FormControlLabel
                       value="light"
@@ -71,6 +76,9 @@ export default function Preferences() {
                       }
                       label="Light Mode"
                     />
+                    <Typography variant="h6" className="!mr-4 !mb-1 opacity-50">
+                      |
+                    </Typography>
                     <FormControlLabel
                       value="dark"
                       control={<Radio checked={preferences.theme === 'dark'} />}
@@ -78,6 +86,7 @@ export default function Preferences() {
                     />
                   </RadioGroup>
                 </FormControl>
+                <Divider className="!mb-2 !mt-2" />
               </Grid>
               <Grid item>
                 <FormControlLabel

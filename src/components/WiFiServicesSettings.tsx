@@ -5,37 +5,43 @@ import {
   Typography,
   FormControlLabel,
   Switch,
-  TextField
+  TextField,
+  Divider
 } from '@mui/material';
 
 export default function WiFiServicesSettings() {
   return (
     <Grid item xs={6}>
       <Box sx={{ m: 1 }}>
-        <Paper sx={{ pt: 2, pb: 2, pl: 2, pr: 2 }}>
+        <Paper sx={{ pt: 2, pb: 4, pl: 2, pr: 2 }}>
           <Grid item sx={{ pb: 2 }}>
-            <Typography variant="overline" textAlign="center">
-              WiFi Services
+            <Typography
+              variant="h6"
+              align="center"
+              className="!font-medium !text-xl !bg-[#25262f35] pt-2 pb-2"
+            >
+              Wifi Services
             </Typography>
           </Grid>
-          <Grid item container direction="column" spacing={2}>
-            <Grid item textAlign="center">
+          <Divider className="!mb-4" />
+          <Grid item container direction="column">
+            <Grid item textAlign="center" className="!mb-[1.2rem]">
               <FormControlLabel
                 control={<Switch color="primary" onChange={() => {}} />}
                 label="Enabled"
               />
             </Grid>
-            <Grid item textAlign="center">
+            <Grid item textAlign="center" className="!mb-[1.2rem]">
               <TextField label="SSID" variant="outlined" value="Some SSID" />
             </Grid>
-            <Grid item textAlign="center">
+            <Grid item textAlign="center" className="!mb-[1.2rem]">
               <TextField
                 label="IP Address"
                 variant="outlined"
                 value="127.0.0.1"
               />
             </Grid>
-            <Grid item textAlign="center">
+            <Grid item textAlign="center" className="!mb-[1.2rem]">
               <TextField
                 label="Subnet Mask"
                 variant="outlined"

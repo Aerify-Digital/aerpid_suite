@@ -4,7 +4,7 @@ import WiFiServicesSettings from './WiFiServicesSettings';
 
 export default function NetworkConfiguration() {
   return (
-    <Grid container direction="column" item>
+    <Grid container direction="column" item sx={{ ml: 1 }}>
       <Grid item alignContent="center" container>
         <WiFiNetworkSettings />
         <WiFiServicesSettings />
