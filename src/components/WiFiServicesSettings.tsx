@@ -25,23 +25,23 @@ export default function WiFiServicesSettings() {
           </Grid>
           <Divider className="!mb-4" />
           <Grid item container direction="column">
-            <Grid item textAlign="center" className="!mb-[1.2rem]">
+            <Grid item textAlign="center" className="com-margin">
               <FormControlLabel
                 control={<Switch color="primary" onChange={() => {}} />}
                 label="Enabled"
               />
             </Grid>
-            <Grid item textAlign="center" className="!mb-[1.2rem]">
+            <Grid item textAlign="center" className="com-margin">
               <TextField label="SSID" variant="outlined" value="Some SSID" />
             </Grid>
-            <Grid item textAlign="center" className="!mb-[1.2rem]">
+            <Grid item textAlign="center" className="com-margin">
               <TextField
                 label="IP Address"
                 variant="outlined"
                 value="127.0.0.1"
               />
             </Grid>
-            <Grid item textAlign="center" className="!mb-[1.2rem]">
+            <Grid item textAlign="center" className="com-margin">
               <TextField
                 label="Subnet Mask"
                 variant="outlined"
