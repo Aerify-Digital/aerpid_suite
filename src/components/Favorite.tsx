@@ -23,7 +23,6 @@ export default function Favorite(props: FavoriteProps) {
           />
         </Grid>
       </Grid>
-      <Divider className="colhr" />
     </>
   );
 }

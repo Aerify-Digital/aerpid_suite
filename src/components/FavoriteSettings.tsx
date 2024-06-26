@@ -16,20 +16,34 @@ export default function FavoriteSettings() {
             </Typography>
           </Grid>
           <Divider className="!mb-4" />
-          <Grid item container spacing={2} justifyContent="center">
-            <Grid item textAlign="center" justifyContent="center">
+          <Grid
+            item
+            container
+            spacing={2}
+            justifyContent="center"
+            className="!mt-4"
+          >
+            <Grid textAlign="center" justifyContent="center">
               <Favorite favNum={1} />
             </Grid>
-            <Grid item textAlign="center" justifyContent="center">
+            <Grid
+              textAlign="center"
+              justifyContent="center"
+              className="!mt-4 !mb-4 bors"
+            >
               <Favorite favNum={2} />
             </Grid>
-            <Grid item textAlign="center" justifyContent="center">
+            <Grid textAlign="center" justifyContent="center">
               <Favorite favNum={3} />
             </Grid>
-            <Grid item textAlign="center" justifyContent="center">
+            <Grid
+              textAlign="center"
+              justifyContent="center"
+              className="!mt-4 !mb-4 bors"
+            >
               <Favorite favNum={4} />
             </Grid>
-            <Grid item textAlign="center">
+            <Grid textAlign="center">
               <Typography variant="subtitle2">
                 These settings will be applied automatically once you have
                 finished changing them.
