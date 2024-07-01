@@ -2896,6 +2896,11 @@ at-least-node@^1.0.0:
   resolved "https://registry.yarnpkg.com/at-least-node/-/at-least-node-1.0.0.tgz#602cd4b46e844ad4effc92a8011a3c46e0238dc2"
   integrity sha512-+q/t7Ekv1EDY2l6Gda6LLiX14rU9TV20Wa3ofeQmwPFZbOMo9DXrLbOjFaaclkXKWidIaopwAObQDqwWtGUjqg==
 
+atob-lite@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/atob-lite/-/atob-lite-2.0.0.tgz#0fef5ad46f1bd7a8502c65727f0367d5ee43d696"
+  integrity sha512-LEeSAWeh2Gfa2FtlQE1shxQ8zi5F9GHarrGKz08TMdODD5T4eH6BMsvtnhbWZ+XQn+Gb6om/917ucvRu7l7ukw==
+
 atomically@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/atomically/-/atomically-2.0.3.tgz#27e47bbe39994d324918491ba7c0edb7783e56cb"
@@ -4339,11 +4344,12 @@ espree@^9.6.0, espree@^9.6.1:
     acorn-jsx "^5.3.2"
     eslint-visitor-keys "^3.4.1"
 
-esptool-js@^0.3.2:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/esptool-js/-/esptool-js-0.3.2.tgz#aa1848a0d8d325101a21f8df075c5f34fe69acf7"
-  integrity sha512-hA58j6wxm143MTa1ZkM/uaDsaF2U+/2sdcoPVz5G78o7wENqzOb5KnHfhPGXK8mbhhYnmC7JXGhZ7wfgeB8DmQ==
+esptool-js@^0.4.3:
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/esptool-js/-/esptool-js-0.4.3.tgz#06a3bebcf13a2f148e5e3b6ad497af1d300febad"
+  integrity sha512-BZO/TP1vMCfLU8WICK54oFHBYA7S5D4kH4eD9MzC6NnBBedcdy6Vgd1oDz+1BWwhrHPbKgH9micGQKaau+7fBg==
   dependencies:
+    atob-lite "^2.0.0"
     pako "^2.1.0"
     tslib "^2.4.1"
 

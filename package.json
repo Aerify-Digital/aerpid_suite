@@ -67,7 +67,7 @@
     "axios": "^1.7.2",
     "electron-squirrel-startup": "^1.0.1",
     "electron-store": "^10.0.0",
-    "esptool-js": "^0.3.2",
+    "esptool-js": "^0.4.3",
     "fs-extra": "^11.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
